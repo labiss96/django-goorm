@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<form method="POST" action="{% url 'signup' %}">
+<form method="POST" action="{% url 'accounts:signup' %}">
     {% csrf_token %}
 
     id: <input type="text" name="username" required="required" placeholder="Your id"><br>
