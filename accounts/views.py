@@ -2,11 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import auth
 from .models import Profile
 
-# Create your views here.
-
-def home(request):
-    return render(request, 'home.html')
-
+# Create your views here
 
 def signup(request):
     if request.method == 'POST':
@@ -17,7 +13,7 @@ def signup(request):
                 return render(request, 'signup.html', {'error': 'Username has already been taken'})
             except Profile.DoesNotExist:
                 user = Profile.objects.create_user(
-                    request.POST['username'], password=request.POST['password1'], sex=request.POST['sext'],start_year=request.POST['start_year'])
+                    request.POST['username'], password=request.POST['password1'], sex=request.POST['sex'],start_year=request.POST['start_year'])
                 auth.login(request, user)   #로그인 상태를 유지시켜주는 함수임
                
 
@@ -45,3 +41,8 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('home')          #그냥 단순하게 로그아웃 상태가 해체된다
+
+
+def mypage(request, profile_name):
+    mypage_info = Profile.objects.get(username=profile_name)
+    return render(request,'accounts/mypage.html',{'mypage_info':mypage_info})
