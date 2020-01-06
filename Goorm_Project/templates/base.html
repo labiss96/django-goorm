@@ -35,29 +35,33 @@
                 <!-- <li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li> -->
-                {% if not user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">로그인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
-                </li>
+                {% if not user.is_authenticated %}    <!-- 유저 로그인 상태확인해주는거임-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
+                    </li>
 
-                {% else %}
-                <li class="nav-item">
-                    <form id="logout" method="POST" action="#">
-                        {% csrf_token %}
-                        <input type="submit" value="로그아웃">
-                    </form>
-                </li>    
-                {% endif %}
+                    {% else %}
+                    <!-- 만약에 로그인 되면은 로그인만뜨고-->
+                    <li class="nav-item">
+                        <form id="logout" method="POST" action="#">
+                            <input type="submit" value="로그아웃" href="{% url 'home' %}">
+                        </form>
+
+                    {% endif %}
+                        <!-- 로그아웃 안되게 하면 뭐 하나만뜨게해주는거임-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">로그아웃</a>
+                    </li>
             </ul>
         </div>
     </nav>
 
     <div>
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
     </div>
 </body>
 
