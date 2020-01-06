@@ -1,0 +1,30 @@
+<h1>새 담배를 작성해 주세요</h1>
+
+<form action = "{% url 'goorm:create' %}" method = "POST">
+    {% csrf_token %}
+    이름 : <input type="text" name="name">
+    <br>
+    <br>
+    가격 : <input type="text" name="price">
+    <br>
+    <br>
+     출시일 :<input type="date" value="xxx" min="yyy" max="zzz" name="rel_date">
+    <br>
+    <br> 
+    니코틴 : <input type="text" name="nicotine">
+    <br>
+    <br>
+    타르 : <input type="text" name="TAR">
+    <br>
+    <br>
+    타격감 : <input type="text" name="feel_of_hit">
+    <br>
+    <br>
+    맨솔의 유무 : <input type="checkbox" name="isMenthol" value="check">
+    <br>
+    <br>
+
+
+    <button type="submit">저장하기</button>
+</form>
+``
