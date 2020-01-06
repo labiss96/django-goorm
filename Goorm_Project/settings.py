@@ -46,7 +46,7 @@ ROOT_URLCONF = 'Goorm_Project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['Goorm_Project/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
