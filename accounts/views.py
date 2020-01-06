@@ -21,12 +21,12 @@ def signup(request):
                 auth.login(request, user)   #로그인 상태를 유지시켜주는 함수임
                
 
-                return redirect('login')
+                return redirect('accounts:login')
         else:
-            return render(request, 'signup.html', {'error': 'Passwords must match'})
+            return render(request, 'accounts/signup.html', {'error': 'Passwords must match'})
     else:
         # User wants to enter info
-        return render(request, 'signup.html')
+        return render(request, 'accounts/signup.html')
     return render(request, 'home.html')
 
 def login(request):
@@ -38,10 +38,10 @@ def login(request):
             auth.login(request, user)
             return redirect('home')
         else:
-            return render(request, 'login.html', {'error': 'username or password is incorrect.'})
+            return render(request, 'accounts/login.html', {'error': 'username or password is incorrect.'})
     else:
-        return render(request, 'login.html')
+        return render(request, 'accounts/login.html')
 
 def logout(request):
     auth.logout(request)
-    return render(request,'login.html')          #그냥 단순하게 로그아웃 상태가 해체된다
+    return redirect('home')          #그냥 단순하게 로그아웃 상태가 해체된다

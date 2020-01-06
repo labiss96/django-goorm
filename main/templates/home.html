@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>구름과자</title>
-
- 
-
-</head>
-
-<body>
     Goorm Project
     <a href = "{% url 'goorm:goormlist' %}">새 담배 등록하기</a>
 
-</body>
-
-</html>
+{% endblock%}
