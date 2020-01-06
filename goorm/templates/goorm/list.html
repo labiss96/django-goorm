@@ -1,0 +1,13 @@
+
+
+<h1>담배목록</h1>
+
+<a href = "{% url 'goorm:new' %}">새 담배 등록하기</a>
+
+{% for tobacco in list.all %}
+
+    <a href = "{% url 'goorm:detail' tobacco.id %}"><h2>{{tobacco.name}}</h2></a>
+    
+
+
+{% endfor %}

@@ -1,0 +1,15 @@
+<h1>detail</h1>
+
+<h3>이름 : {{tobacco.name}} </h3>
+<h3>가격 : {{tobacco.price}} </h3>
+<h3>출시일 : {{tobacco.rel_date}} </h3>
+<h3>니코틴 : {{tobacco.nicotine}} </h3>
+<h3>타르 : {{tobacco.TAR}} </h3>
+<h3>타격감 : {{tobacco.feel_of_hit}} </h3>
+<!-- <h3>점수 : {{tobacco.score}} </h3> -->
+<h3>맨솔여부 : {{tobacco.isMenthol}} </h3>
+
+
+<a href="{% url 'goorm:goormlist' %}">list</a>
+
+<a href="{% url 'goorm:delete' tobacco.id %}">delete</a>
