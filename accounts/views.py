@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import auth
-from django.contrib.auth.models import User
+from .models import Profile
 
 # Create your views here.
 
@@ -13,11 +13,11 @@ def signup(request):
         # User has info and wants an account now!
         if request.POST['password1'] == request.POST['password2']:   
             try:
-                user = User.objects.get(username=request.POST['username'])
+                user = Profile.objects.get(username=request.POST['username'])
                 return render(request, 'signup.html', {'error': 'Username has already been taken'})
-            except User.DoesNotExist:
-                user = User.objects.create_user(
-                    request.POST['username'], password=request.POST['password1'])
+            except Profile.DoesNotExist:
+                user = Profile.objects.create_user(
+                    request.POST['username'], password=request.POST['password1'], sex=request.POST['sext'],start_year=request.POST['start_year'])
                 auth.login(request, user)   #로그인 상태를 유지시켜주는 함수임
                
 

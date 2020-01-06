@@ -3,9 +3,14 @@
 <form method="POST" action="{% url 'accounts:signup' %}">
     {% csrf_token %}
 
-    id: <input type="text" name="username" required="required" placeholder="Your id"><br>
-    ps:<input type="password" name="password1" required="required" placeholder="Your password"><br>
-    confirm ps:<input type="password" name="password2" required="required" placeholder="Your password"><br>
+    아이디: <input type="text" name="username" required="required" placeholder="Your id"><br>
+    비밀번호:<input type="password" name="password1" required="required" placeholder="Your password"><br>
+    비밀번호 확인:<input type="password" name="password2" required="required" placeholder="Your password"><br>
+    성별:
+    <input type="radio" name="sex" required="required" value="남자">남자
+    <input type="radio" name="sex" required="required" value="여자">여자
+    <br>
+    흡연시작년도:<input type="month" name="start_year" required="required" ><br>
     <label for="password">Your password</label>
 
     <input type="submit" value="Sign Up!">

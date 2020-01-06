@@ -15,7 +15,7 @@ SECRET_KEY = '8%r7&vh+w)^eb8%jz*&o!ve^prioe!gbe_s#255cp26!6&ydp%'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+AUTH_USER_MODEL='accounts.Profile'
 
 # Application definition
 
