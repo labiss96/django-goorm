@@ -37,15 +37,15 @@
                 </li> -->
                 {% if not user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">로그인</a>
+                    <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
+                    <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
                 </li>
 
                 {% else %}
                 <li class="nav-item">
-                    <form id="logout" method="POST" action="#">
+                    <form id="logout" method="POST" action="{% url 'accounts:logout' %}">
                         {% csrf_token %}
                         <input type="submit" value="로그아웃">
                     </form>
