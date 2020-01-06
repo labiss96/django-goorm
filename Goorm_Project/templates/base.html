@@ -35,6 +35,7 @@
                 <!-- <li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li> -->
+
                 {% if not user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
@@ -51,13 +52,14 @@
                     </form>
                 </li>    
                 {% endif %}
+
             </ul>
         </div>
     </nav>
 
     <div>
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
     </div>
 </body>
 
