@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Tobacco, Comment
+from .models import Tobacco, Comment, Brand
 
 def goormlist(request):
     list = Tobacco.objects.all()
@@ -7,7 +7,6 @@ def goormlist(request):
 
 def detail(request, tobacco_id):
     tobacco_detail = get_object_or_404(Tobacco, pk=tobacco_id)
-    
     comments = tobacco_detail.comments.all()
     if request.method == "POST" :
         comment = Comment()
@@ -18,14 +17,20 @@ def detail(request, tobacco_id):
     return render(request, 'goorm/detail.html',{'tobacco': tobacco_detail, 'comments':comments})
 
 def new(request):
-    return render(request, 'goorm/new.html')
+    brands = Brand.objects.all()
 
-def image(request):
-    tobacco_image = Tobacco.objects
-    return render(request, 'goorm/portfolio.html', {'image': image})
+    return render(request, 'goorm/new.html', {'brands':brands} )
 
 def create(request):
+    if request.POST['brand']=='isNewBrand':
+        selected_brand = Brand()
+        selected_brand.brd_name = request.POST['newBrand']
+        selected_brand.save()
+    else:
+        selected_brand = Brand.objects.get(brd_name=request.POST['brand'])
+    
     new_tobacco = Tobacco()
+    new_tobacco.brand = selected_brand
     new_tobacco.name = request.POST['name']
     new_tobacco.price = request.POST['price']
     new_tobacco.rel_date = request.POST['rel_date']
@@ -33,8 +38,10 @@ def create(request):
     new_tobacco.TAR = request.POST['TAR']
     new_tobacco.feel_of_hit = request.POST['feel_of_hit']
     new_tobacco.img = request.FILES.get('tobacco_img')
-    if request.POST['isMenthol']=='check':
+    if request.POST['isMenthol'] == 'yes':
        new_tobacco.isMenthol = True
+    else:
+       new_tobacco.isMenthol = False 
     new_tobacco.save()
     return redirect('/goorm/' +str(new_tobacco.id))
 

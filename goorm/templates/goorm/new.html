@@ -2,6 +2,15 @@
 
 <form action = "{% url 'goorm:create' %}" method = "POST" enctype="multipart/form-data">
     {% csrf_token %} 
+    브랜드:
+    <select name="brand">
+    {% for brand in brands %}
+        <option value="{{brand.brd_name}}">{{brand.brd_name}}</option>
+    {% endfor %}
+        <option value="isNewBrand">브랜드 추가</option>
+    </select>
+    <input type="text" name="newBrand" id="">
+    <br>
     이름 : <input type="text" name="name">
     <br>
     <br>
@@ -20,7 +29,9 @@
     타격감 : <input type="text" name="feel_of_hit">
     <br>
     <br>
-    맨솔의 유무 : <input type="checkbox" name="isMenthol" value="check">
+    맨솔의 유무 : 
+    <input type="radio" name="isMenthol" value="yes">Yes
+    <input type="radio" name="isMenthol" value="no">No
     <br>
     <br>
     이미지 : <input type="file" name = "tobacco_img" accept=".jpg, .png, .gif, .jpeg">
