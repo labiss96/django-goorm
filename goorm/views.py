@@ -71,5 +71,8 @@ def comment_delete(request, comment_id) :
     delete_comment.delete()
     return redirect('/goorm/' + str(delete_comment.tobacco.id))
 
+def brand_filter(request , brand_id) :
+   brand_tobacco=Tobacco.objects.filter( brand = brand_id)
+   return render(request, 'goorm/brand_detail.html' ,{'tobaccos':brand_tobacco})    
 
 # Create your views here.
