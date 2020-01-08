@@ -6,14 +6,35 @@ def goormlist(request):
     return render(request, 'goorm/list.html', {'list': list})
 
 def detail(request, tobacco_id):
-    tobacco_detail = get_object_or_404(Tobacco, pk=tobacco_id)
-    comments = tobacco_detail.comments.all()
+    
+    # POST(comment 생성)
     if request.method == "POST" :
+        tobacco_detail = get_object_or_404(Tobacco, pk=tobacco_id)
+        
+        # create comment 
         comment = Comment()
-        comment.post = Tobacco.objects.get(id = tobacco_id)
-        comment.writer = request.POST['comment_writer']
-        comment.text = request.POST['comment_text']
+        comment.tobacco = Tobacco.objects.get(id = tobacco_id)
+        comment.writer = request.user
+        comment.contents = request.POST['comment_text']
+        comment.score = request.POST['comment_score']
         comment.save()
+
+        comments = Comment.objects.filter(tobacco=tobacco_id)
+    
+    # GET
+    else:
+        tobacco_detail = get_object_or_404(Tobacco, pk=tobacco_id)
+        comments = Comment.objects.filter(tobacco=tobacco_id)
+
+    # 구름과자 score 계산 로직
+    num_of_cmt = len(comments)
+    total_score = 0
+    for cmt in comments:
+        total_score += cmt.score
+    total_score = total_score / num_of_cmt
+    tobacco_detail.score = total_score
+    tobacco_detail.save()
+
     return render(request, 'goorm/detail.html',{'tobacco': tobacco_detail, 'comments':comments})
 
 def new(request):
