@@ -12,6 +12,10 @@ def detail(request, tobacco_id):
 def new(request):
     return render(request, 'goorm/new.html')
 
+def image(request):
+    tobacco_image = Tobacco.objects
+    return render(request, 'goorm/portfolio.html', {'image': image})
+
 def create(request):
     new_tobacco = Tobacco()
     new_tobacco.name = request.POST['name']
@@ -20,6 +24,7 @@ def create(request):
     new_tobacco.nicotine = request.POST['nicotine']
     new_tobacco.TAR = request.POST['TAR']
     new_tobacco.feel_of_hit = request.POST['feel_of_hit']
+    new_tobacco.img = request.FILES.get('tobacco_img')
     if request.POST['isMenthol']=='check':
        new_tobacco.isMenthol = True
     new_tobacco.save()
