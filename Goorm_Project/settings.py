@@ -15,7 +15,7 @@ SECRET_KEY = '8%r7&vh+w)^eb8%jz*&o!ve^prioe!gbe_s#255cp26!6&ydp%'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+AUTH_USER_MODEL='accounts.Profile'
 
 # Application definition
 
@@ -109,7 +109,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 STATIC_URL = '/static/'
+
 STATICFILES_FILES = [
     os.path.join(BASE_DIR, 'goorm', 'static')
 ]
@@ -120,3 +125,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+

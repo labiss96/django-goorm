@@ -50,7 +50,10 @@
                         {% csrf_token %}
                         <input type="submit" value="로그아웃">
                     </form>
-                </li>    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:mypage' user.username %}">마이페이지</a>
+                </li>
                 {% endif %}
 
             </ul>
