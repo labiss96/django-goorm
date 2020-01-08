@@ -9,6 +9,8 @@
     <p>ID : {{ mypage_info.username }}</p>
     <p>성별 : {{mypage_info.sex }}</p>
     <p>흡연시작년도 : {{mypage_info.start_year}}</p>
+    <p><a href="{% url 'accounts:edit' mypage_info.username %}">회원정보 수정하기</a>
+    </p>
 </div>
 
 
