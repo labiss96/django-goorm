@@ -46,3 +46,14 @@ def logout(request):
 def mypage(request, profile_name):
     mypage_info = Profile.objects.get(username=profile_name)
     return render(request,'accounts/mypage.html',{'mypage_info':mypage_info})
+
+def edit(request, profile_name):
+    edit_mypage=Profile.objects.get(username=profile_name)
+    return render(request, 'accounts/edit.html', {'profile':edit_mypage})    
+
+def update(request, profile_name):
+    update_mypage = Profile.objects.get (username = profile_name)
+    update_mypage.sex = request.POST['sex']
+    update_mypage.start_year = request.POST['start_year']
+    update_mypage.save()
+    return redirect('/accounts/mypage/' + str(profile_name))     

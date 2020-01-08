@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>회원 정보 수정하기</h1>
+
+<form action="{% url 'accounts:update' profile.username %}" method="POST">
+    {%csrf_token%}
+    성별 : 
+    <input type="radio" name="sex" required="required" value="남자">남자
+    <input type="radio" name="sex" required="required" value="여자">여자
+    <br>
+    흡연시작년도 : <input type="text" name="start_year" value="{{profile.start_year}}">
+    <br>
+    <br>
+    <br>
+    <button type="submit">수정하기</button>
+</form>
+
+{% endblock %}
