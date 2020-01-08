@@ -1,4 +1,6 @@
 from django.db import models
+from accounts.models import Profile
+
 
 class Brand(models.Model):
     brd_name = models.CharField(max_length=100)
@@ -24,10 +26,13 @@ class Tobacco(models.Model):
         return self.name
 
 class Comment(models.Model) :
-    post = models.ForeignKey(Tobacco, on_delete = models.CASCADE, related_name= 'comments')
-    writer = models.CharField(max_length= 200)
-    text = models.TextField()
-    created = models.DateTimeField(auto_now_add= True)
+    tobacco = models.ForeignKey(Tobacco, on_delete = models.CASCADE, related_name= 'comments')
+    writer = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name= 'writer')
+    pub_date = models.DateTimeField(auto_now_add= True)
+    contents = models.TextField()
+    score = models.PositiveIntegerField(default=3)
+    
+
 
     def __str__(self) :
         return self.writer + "의 댓글"

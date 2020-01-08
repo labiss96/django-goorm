@@ -6,13 +6,14 @@
     <img src="{{tobacco.img.url}}" style='width:200px; height: 200px; display:block; margin:10px; text-align: center;'>
     {% endif %}
     
+    <h3>브랜드 : {{tobacco.brand.brd_name}}</h3>
     <h3>이름 : {{tobacco.name}} </h3>
     <h3>가격 : {{tobacco.price}} </h3>
     <h3>출시일 : {{tobacco.rel_date}} </h3>
     <h3>니코틴 : {{tobacco.nicotine}} </h3>
     <h3>타르 : {{tobacco.TAR}} </h3>
     <h3>타격감 : {{tobacco.feel_of_hit}} </h3>
-    <!-- <h3>점수 : {{tobacco.score}} </h3> -->
+    <h3>점수 : {{tobacco.score}} </h3>
     <h3>맨솔여부 : {{tobacco.isMenthol}} </h3>
     
     
@@ -20,26 +21,42 @@
     
     <a href="{% url 'goorm:delete' tobacco.id %}">delete</a>    
 
-  <br>
-  <br>
-  <br>
-  <br>
-
-  <form action="" method="POST">
-      {% csrf_token %}
-      <div class="">작성자:<input type="text" name="comment_writer" placeholder="작성자를 입력하세요"> </div>
-      <br>
-      <div class="">댓글: <input type="text" name="comment_text" placeholder="댓글을 입력하세요"></div>
-      <br>
-      <input class="btn btn-outline-primary" type="submit">
-  </form>
-
-  {%for comment in comments %}
+    <br>
     <hr>
-    <p>작성자 : {{comment.writer}}</p>
-    <p>댓글: {{comment.text}} </p>
-    <a class="delete" href="{% url 'goorm:comment_delete' comment.id%}">delete</a>
-  {% endfor %}
+
+    <h5>Comment</h5>
+    <br>
+    {% for comment in comments.all %}
+        <span>{{comment.writer}}</span> /
+        <span>{{comment.contents}}</span> /
+        <span>{{comment.score}}</span>
+        {% if request.user == comment.writer %}
+            <form action="{% url 'goorm:comment_delete' comment.id %}">
+                <button class="btn btn-outline-secondary" type="submit">Delete</button>
+            </form>
+        {% endif %}
+        <hr>
+    {% endfor %}
+    
+
+    {% if user.is_authenticated %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <img src="{{ request.user.profile_img.url }}" alt="" style="width: 35px; height: 35px; border-radius: 40%;"> 
+        <span style="padding: 5%;">{{request.user.username}}</span>
+
+        <p>Comment <br> <input type="text" name="comment_text" placeholder="댓글을 입력하세요"></p>
+        Score <br> 
+        <input type="radio" name="comment_score" value="1">1
+        <input type="radio" name="comment_score" value="2">2
+        <input type="radio" name="comment_score" value="3">3
+        <input type="radio" name="comment_score" value="4">4
+        <input type="radio" name="comment_score" value="5">5
+        <br><br>
+        <input class="btn btn-outline-primary" type="submit">
+    </form> 
+    {% endif %}
+
 
 </div>
 {% endblock %}
