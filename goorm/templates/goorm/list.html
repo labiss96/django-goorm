@@ -3,12 +3,8 @@
 <h1>담배목록</h1>
 
 <a href = "{% url 'goorm:new' %}">새 담배 등록하기</a>
-{% load staticfiles %}
 {% for tobacco in list.all %}
     
-    <img src="{% static 'malboro.jpeg' %}" alt="">
     <a href = "{% url 'goorm:detail' tobacco.id %}"><h2>{{tobacco.name}}</h2></a>
     
-
-
 {% endfor %}
