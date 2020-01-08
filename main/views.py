@@ -4,5 +4,10 @@ from goorm.models import Tobacco, Brand
 
 def home(request):
     brands = Brand.objects.all()
+    best_goorms = Tobacco.objects.all().order_by('-score')
 
-    return render(request, 'home.html', {"brands":brands})
+    best_list = []
+    for i in range(3):
+        best_list.append(best_goorms[i])
+
+    return render(request, 'home.html', {"brands":brands, "best_grms":best_list})
