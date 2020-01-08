@@ -2,16 +2,16 @@
 <html lang="en">
 
 <head>
-    {% load static %}
+  {% load static %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
   <title>Shop Homepage - Start Bootstrap Template</title>
-    
+
   <!-- Bootstrap core CSS -->
-  <link href="{% static './vendor/bootstrap/css/bootstrap.min.css' %}"  rel="stylesheet">
+  <link href="{% static './vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="{% static './css/shop-homepage.css' %}" rel="stylesheet">
@@ -23,33 +23,64 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="{% url 'home' %}">구름과자 프로젝트</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+
+          <!--담배기능 리스트 작업-->
+
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="{% url 'goorm:goormlist' %}">Tobacco List
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="#">뭐할까 여기는
+              <span class="sr-only">(current)</span>
+            </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+
+          <!--담배기능 리스트 작업-->
+
+
+          <!--로그인 기능 네브바-->
+          {% if not user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'accounts:login' %}">로그인
+              <span class="sr-only">(current)</span>
+            </a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
           </li>
+          {% else %}
+
+          <li class="nav-item">
+            <form id="logout" method="POST" action="{% url 'accounts:logout' %}" class="nav-link">
+              {% csrf_token %}
+              <input type="submit" value="로그아웃">
+            </form>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:mypage' user.username %}">마이페이지</a>
+          </li>
+          {% endif %}
+          <!--로그인 기능 네브바-->
+
         </ul>
       </div>
     </div>
   </nav>
 
-    {% block content %}
-    {% endblock %}
+  {% block content %}
+  {% endblock %}
 
 
   <!-- Footer -->

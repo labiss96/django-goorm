@@ -3,12 +3,12 @@
 
 <form method="POST" action="{% url 'accounts:login'%}">
     {% csrf_token %}
-id:<input type="text" name="username"  required="required" placeholder="Your id"><br>
+아이디:<input type="text" name="username"  required="required" placeholder="Your id"><br>
 
-ps:<input type="password" name="password"   required="required" placeholder="Your password"><br>
+비밀번호:<input type="password" name="password"   required="required" placeholder="Your password"><br>
 
   <input type="submit" value="Sign in" ><br>
-  <a href="{% url 'accounts:signup' %}" >signup</a>
+  <a href="{% url 'accounts:signup' %}" >회원가입</a>
 
 </form>
 
