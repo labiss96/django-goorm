@@ -12,7 +12,7 @@
 
         <div class="list-group">
           {% for brand in brands %}
-          <a href="#" class="list-group-item">{{brand}}</a>
+          <a href="{% url 'goorm:brand_filter' brand.id %}" class="list-group-item">{{brand}}</a>
           {% endfor %}
 
           
