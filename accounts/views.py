@@ -13,7 +13,12 @@ def signup(request):
                 return render(request, 'signup.html', {'error': 'Username has already been taken'})
             except Profile.DoesNotExist:
                 user = Profile.objects.create_user(
-                    request.POST['username'], password=request.POST['password1'], sex=request.POST['sex'],start_year=request.POST['start_year'])
+                    request.POST['username'], 
+                    password=request.POST['password1'], 
+                    sex=request.POST['sex'],
+                    start_year=request.POST['start_year'],
+                    profile_img = request.FILES.get('profile_img')
+                    )
                 auth.login(request, user)   #로그인 상태를 유지시켜주는 함수임
                
 
@@ -55,5 +60,8 @@ def update(request, profile_name):
     update_mypage = Profile.objects.get (username = profile_name)
     update_mypage.sex = request.POST['sex']
     update_mypage.start_year = request.POST['start_year']
+    if request.FILES.get('profile_img'):
+        update_mypage.profile_img = request.FILES.get('profile_img')
+
     update_mypage.save()
     return redirect('/accounts/mypage/' + str(profile_name))     
