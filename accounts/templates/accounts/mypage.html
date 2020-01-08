@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% load staticfiles %}
-
 
 <div class="container">
     <p><img style="width: 13.5rem; border-radius: 25%;" src="{{ mypage_info.profile_img.url }}"></p>
     <p>ID : {{ mypage_info.username }}</p>
     <p>성별 : {{mypage_info.sex }}</p>
     <p>흡연시작년도 : {{mypage_info.start_year}}</p>
+
     <p><a href="{% url 'accounts:edit' mypage_info.username %}">회원정보 수정하기</a>
     </p>
 </div>

@@ -3,7 +3,7 @@
 
 <h1>회원 정보 수정하기</h1>
 
-<form action="{% url 'accounts:update' profile.username %}" method="POST">
+<form action="{% url 'accounts:update' profile.username %}" method="POST" enctype="multipart/form-data">
     {%csrf_token%}
     성별 : 
     <input type="radio" name="sex" required="required" value="남자">남자
@@ -11,6 +11,8 @@
     <br>
     흡연시작년도 : <input type="text" name="start_year" value="{{profile.start_year}}">
     <br>
+    프로필 사진 :
+    <input type="file" name="profile_img" accept=".jpg, .jpeg, .png, .gif">
     <br>
     <br>
     <button type="submit">수정하기</button>
