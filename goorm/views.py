@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Tobacco
+from .models import Tobacco, Comment
 
 def goormlist(request):
     list = Tobacco.objects.all()
@@ -7,7 +7,15 @@ def goormlist(request):
 
 def detail(request, tobacco_id):
     tobacco_detail = get_object_or_404(Tobacco, pk=tobacco_id)
-    return render(request, 'goorm/detail.html',{'tobacco': tobacco_detail})
+    
+    comments = tobacco_detail.comments.all()
+    if request.method == "POST" :
+        comment = Comment()
+        comment.post = Tobacco.objects.get(id = tobacco_id)
+        comment.writer = request.POST['comment_writer']
+        comment.text = request.POST['comment_text']
+        comment.save()
+    return render(request, 'goorm/detail.html',{'tobacco': tobacco_detail, 'comments':comments})
 
 def new(request):
     return render(request, 'goorm/new.html')
@@ -50,5 +58,11 @@ def delete(request, tobacco_id):
     delete_t= Tobacco.objects.get(id = tobacco_id)
     delete_t.delete()
     return redirect('goorm:goormlist')
+
+def comment_delete(request, comment_id) : 
+    delete_comment = Comment.objects.get(id=comment_id)
+    delete_comment.delete()
+    return redirect('/goorm/' + str(delete_comment.tobacco.id))
+
 
 # Create your views here.

@@ -1,18 +1,45 @@
-<h1>detail</h1>
-{% if tobacco.img %}
-<img src="{{tobacco.img.url}}">
-{% endif %}
+{% extends 'base.html' %}
+{% block content %}
 
-<h3>이름 : {{tobacco.name}} </h3>
-<h3>가격 : {{tobacco.price}} </h3>
-<h3>출시일 : {{tobacco.rel_date}} </h3>
-<h3>니코틴 : {{tobacco.nicotine}} </h3>
-<h3>타르 : {{tobacco.TAR}} </h3>
-<h3>타격감 : {{tobacco.feel_of_hit}} </h3>
-<!-- <h3>점수 : {{tobacco.score}} </h3> -->
-<h3>맨솔여부 : {{tobacco.isMenthol}} </h3>
+<div class="container">
+    {% if tobacco.img %}
+    <img src="{{tobacco.img.url}}" style='width:200px; height: 200px; display:block; margin:10px; text-align: center;'>
+    {% endif %}
+    
+    <h3>이름 : {{tobacco.name}} </h3>
+    <h3>가격 : {{tobacco.price}} </h3>
+    <h3>출시일 : {{tobacco.rel_date}} </h3>
+    <h3>니코틴 : {{tobacco.nicotine}} </h3>
+    <h3>타르 : {{tobacco.TAR}} </h3>
+    <h3>타격감 : {{tobacco.feel_of_hit}} </h3>
+    <!-- <h3>점수 : {{tobacco.score}} </h3> -->
+    <h3>맨솔여부 : {{tobacco.isMenthol}} </h3>
+    
+    
+    <a href="{% url 'goorm:goormlist' %}">list</a>
+    
+    <a href="{% url 'goorm:delete' tobacco.id %}">delete</a>    
 
+  <br>
+  <br>
+  <br>
+  <br>
 
-<a href="{% url 'goorm:goormlist' %}">list</a>
+  <form action="" method="POST">
+      {% csrf_token %}
+      <div class="">작성자:<input type="text" name="comment_writer" placeholder="작성자를 입력하세요"> </div>
+      <br>
+      <div class="">댓글: <input type="text" name="comment_text" placeholder="댓글을 입력하세요"></div>
+      <br>
+      <input class="btn btn-outline-primary" type="submit">
+  </form>
 
-<a href="{% url 'goorm:delete' tobacco.id %}">delete</a>
+  {%for comment in comments %}
+    <hr>
+    <p>작성자 : {{comment.writer}}</p>
+    <p>댓글: {{comment.text}} </p>
+    <a class="delete" href="{% url 'goorm:comment_delete' comment.id%}">delete</a>
+  {% endfor %}
+
+</div>
+{% endblock %}
