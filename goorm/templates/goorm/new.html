@@ -1,7 +1,7 @@
 <h1>새 담배를 작성해 주세요</h1>
 
-<form action = "{% url 'goorm:create' %}" method = "POST">
-    {% csrf_token %}
+<form action = "{% url 'goorm:create' %}" method = "POST" enctype="multipart/form-data">
+    {% csrf_token %} 
     이름 : <input type="text" name="name">
     <br>
     <br>
@@ -23,6 +23,11 @@
     맨솔의 유무 : <input type="checkbox" name="isMenthol" value="check">
     <br>
     <br>
+    이미지 : <input type="file" name = "tobacco_img" accept=".jpg, .png, .gif, .jpeg">
+    <br>
+    <br>
+
+
 
 
     <button type="submit">저장하기</button>

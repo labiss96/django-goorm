@@ -1,4 +1,7 @@
 <h1>detail</h1>
+{% if tobacco.img %}
+<img src="{{tobacco.img.url}}">
+{% endif %}
 
 <h3>이름 : {{tobacco.name}} </h3>
 <h3>가격 : {{tobacco.price}} </h3>
