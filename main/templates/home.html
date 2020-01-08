@@ -8,8 +8,9 @@
 
       <div class="col-lg-3">
 
-        <h1 class="my-4">구름과자</h1>
+        <h1 class="my-4">Goorm</h1>
 
+        
         <div class="list-group">
           {% for brand in brands %}
           <a href="{% url 'goorm:brand_filter' brand.id %}" class="list-group-item">{{brand}}</a>
@@ -51,7 +52,23 @@
         </div>
 
         <div class="row">
-
+          {% for grm in best_grms %}
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="{{grm.img.url}}" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="{% url 'goorm:detail' grm.id %}">{{grm.brand}} {{grm.name}}</a>
+                  </h4>
+                  <h5>{{grm.price}}</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>  
+          {% endfor %}
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>

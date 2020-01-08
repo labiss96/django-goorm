@@ -8,13 +8,11 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Shop Homepage - Start Bootstrap Template</title>
+  <title>Goorm Project</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{% static './vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="{% static './css/shop-homepage.css' %}" rel="stylesheet">
 
 </head>
 
@@ -23,7 +21,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'home' %}">구름과자 프로젝트</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Goorm Project</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,7 +32,7 @@
           <!--담배기능 리스트 작업-->
 
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'goorm:goormlist' %}">Tobacco List
+            <a class="nav-link" href="{% url 'goorm:goormlist' %}">Goorm List
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -51,26 +49,31 @@
           <!--로그인 기능 네브바-->
           {% if not user.is_authenticated %}
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'accounts:login' %}">로그인
+            <a class="nav-link" href="{% url 'accounts:login' %}">Login
               <span class="sr-only">(current)</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
+            <a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a>
           </li>
           {% else %}
 
           <li class="nav-item">
             <form id="logout" method="POST" action="{% url 'accounts:logout' %}" class="nav-link">
               {% csrf_token %}
-              <input type="submit" value="로그아웃">
+              <input type="submit" value="Logout">
             </form>
           </li>
+          
+          
+          <a class="nav-link" href="{% url 'accounts:mypage' user.username %}">
+            <div style="text-align: center;">
+              <img src="{{ request.user.profile_img.url }}" alt="" style="width: 35px; height: 35px; border-radius: 40%; vertical-align: top;">
+            </div>
+          </a>
+          
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:mypage' user.username %}">마이페이지</a>
-          </li>
           {% endif %}
           <!--로그인 기능 네브바-->
 
@@ -98,3 +101,10 @@
 </body>
 
 </html>
+
+<style>
+
+body {
+  padding-top: 80px;
+}
+</style>

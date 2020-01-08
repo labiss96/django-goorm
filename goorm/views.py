@@ -31,7 +31,8 @@ def detail(request, tobacco_id):
     total_score = 0
     for cmt in comments:
         total_score += cmt.score
-    total_score = total_score / num_of_cmt
+    if total_score != 0:
+        total_score = total_score / num_of_cmt
     tobacco_detail.score = total_score
     tobacco_detail.save()
 
@@ -93,7 +94,7 @@ def comment_delete(request, comment_id) :
     return redirect('/goorm/' + str(delete_comment.tobacco.id))
 
 def brand_filter(request , brand_id) :
-   brand_tobacco=Tobacco.objects.filter( brand = brand_id)
+   brand_tobacco=Tobacco.objects.filter(brand = brand_id)
    return render(request, 'goorm/brand_detail.html' ,{'tobaccos':brand_tobacco})    
 
 # Create your views here.
