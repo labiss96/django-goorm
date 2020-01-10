@@ -12,13 +12,13 @@
 
 <!-- 담배 이름을 검색했을때 -->
 {% else %}
-dd
 
-<h1>담배</h1>
+<h1>담배 검색결과</h1>
+
 
 {%for tobacco in results%}
 
-<a href="{% url 'goorm:detail' grm.id %}">{{tobacco}}</a>
+<a href = "{% url 'goorm:detail' tobacco.id %}">{{tobacco}}</a>
 
 {% endfor %}
 
