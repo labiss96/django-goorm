@@ -1,3 +1,38 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
 <h1>글을 수정하는 중입니다. </h1>
 
-<form></form>
+    <form action="{% url 'goorm:update' tobacco.id %}" method = "POST">
+        {% csrf_token %}
+        
+        <p>이름 : <input type="text" name="name" value="{{tobacco.name}}"></p>
+        <p>가격 : <input type="text" name="price" value="{{tobacco.price}}"></p>
+        출시일 :<input type="date" name="rel_date" value="{{tobacco.rel_date}}">
+        <br>
+        니코틴 : <input type="text" name="nicotine" value = "{{tobacco.nicotine}}">
+        <br>
+        <br>
+        타르 : <input type="text" name="TAR" value="{{tobacco.TAR}}">
+        <br>
+        <br>
+        타격감 : <input type="text" name="feel_of_hit" value="{{tobacco.feel_of_hit}}">
+        <br>
+        <br>
+        맨솔의 유무 : 
+        <input type="radio" name="isMenthol" value="yes">Yes
+        <input type="radio" name="isMenthol" value="no">No
+        <br>
+        <br>
+        이미지 : <input type="file" name = "tobacco_img" accept=".jpg, .png, .gif, .jpeg" >
+        <br>
+        <br>
+            
+        <hr>
+        <div class="update">
+            <input class="btn btn-dark" type="submit" style="background-color: #2b457a;" value="저장하기">
+        </div>
+    <form>
+        
+{% endblock %}

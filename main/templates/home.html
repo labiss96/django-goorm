@@ -55,16 +55,16 @@
           {% for grm in best_grms %}
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="{{grm.img.url}}" alt=""></a>
+                <a href="#" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img class="card-img-top" src="{{grm.img.url}}" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="{% url 'goorm:detail' grm.id %}">{{grm.brand}} {{grm.name}}</a>
                   </h4>
                   <h5>{{grm.price}}</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <p class="card-text"></p>
                 </div>
-                <div class="card-footer">
-                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <div class="card-footer" style="text-align: center;">
+                  <small class="text-muted">{{grm.star}}</small>
                 </div>
               </div>
             </div>  
