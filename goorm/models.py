@@ -5,6 +5,7 @@ from django_fields import DefaultStaticImageField
 
 class Brand(models.Model):
     brd_name = models.CharField(max_length=100)
+    brd_img = DefaultStaticImageField(upload_to='brand_img/', blank=True, default_image_path='images/default_goorm_img.png')
 
     def __str__(self):
         return self.brd_name

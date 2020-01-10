@@ -126,10 +126,7 @@ def search(request):
         if search_type == 'brand':
             results = brd.filter(brd_name__icontains = search_data)
         elif search_type == 'name':
-            print('------------------------')
             results = grm.filter(name__icontains = search_data)
-            print(results)
-            print('------------------------')
 
     return render(request, 'goorm/search.html', { 'results': results, 'search_type':search_type})
 # Create your views here.
