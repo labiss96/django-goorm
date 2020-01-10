@@ -12,7 +12,7 @@ def goormlist(request):
         tmps.append(grm_list.filter(brand = brd))
         brd_grm.append(tmps)
 
-    return render(request, 'goorm/list.html', {'grm_list': grm_list, 'brd_grm': brd_grm})
+    return render(request, 'goorm/list.html', {'grm_list': grm_list, 'brd_grm': brd_grm, 'brd_list':brd_list})
 
 def detail(request, tobacco_id):
     
