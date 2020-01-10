@@ -1,45 +1,63 @@
 
 {% extends 'base.html' %}
 {% block content %}
+<div class="container">
+    <h1>Goorm List</h1>
 
-<h1>담배목록</h1>
-
-<a href = "{% url 'goorm:new' %}">새 담배 등록하기</a>
-
-
-
-
-{% for brd in brd_grm %}
-<div class="card" style="width: 100%;">
-    <div class="card-header">
-        {{brd.0}}`
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            <div class ="row">
-                {% for grm in brd.1 %}
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                      <a href="#" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img class="card-img-top" src="{{grm.img.url}}" alt=""></a>
-                      <div class="card-body">
-                        <h4 class="card-title">
-                          <a href="{% url 'goorm:detail' grm.id %}">{{grm.brand}} {{grm.name}}</a>
-                        </h4>
-                        <h5>{{grm.price}}</h5>
-                        <p class="card-text"></p>
-                      </div>
-                      <div class="card-footer" style="text-align: center;">
-                        <small class="text-muted">{{grm.star}}</small>
-                      </div>
-                    </div>
-                  </div> 
-                {% endfor %}
+    <a href = "{% url 'goorm:new' %}">새 구름 등록하기</a>
+    
+    <hr>
+    <h3>Brand</h3>
+    <br>
+    <div class ="row">
+        {% for brand in brd_list %}
+        <div class="col-lg-2 col-md-6 mb-4" style="text-align :center; ">
+        
+            <div class="card" style="width: 100%;">
+                <img class="card-img-top" src="{{brand.brd_img.url}}" alt="" style="display: block; margin: 0px auto; margin-top: 10px; width: 70px; border-radius: 40%;">
+                <div class="card-body">
+                <p class="card-text">{{brand}}</p>
+                </div>
             </div>
-           
-        </li>
-
-    </ul>
+        
+        </div>
+        {% endfor %}
+    </div>
+    
+    <hr>
+    
+    {% for brd in brd_grm %}
+    <div class="card" style="width: 100%;">
+        <div class="card-header">
+            {{brd.0}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class ="row">
+                    {% for grm in brd.1 %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                          <a href="#" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img class="card-img-top" src="{{grm.img.url}}" alt=""></a>
+                          <div class="card-body">
+                            <h4 class="card-title">
+                              <a href="{% url 'goorm:detail' grm.id %}">{{grm.brand}} {{grm.name}}</a>
+                            </h4>
+                            <h5>{{grm.price}}</h5>
+                            <p class="card-text"></p>
+                          </div>
+                          <div class="card-footer" style="text-align: center;">
+                            <small class="text-muted">{{grm.star}}</small>
+                          </div>
+                        </div>
+                      </div> 
+                    {% endfor %}
+                </div>
+               
+            </li>
+    
+        </ul>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
 
-  {% endblock%}
+{% endblock%}
