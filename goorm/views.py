@@ -45,7 +45,12 @@ def detail(request, tobacco_id):
     tobacco_detail.score = total_score
     tobacco_detail.save()
 
-    return render(request, 'goorm/detail.html',{'tobacco': tobacco_detail, 'comments':comments})
+    cmt_flag = False
+    for cmt in comments:
+        if request.user == cmt.writer:
+            cmt_flag = True 
+
+    return render(request, 'goorm/detail.html',{'tobacco': tobacco_detail, 'comments':comments, 'cmt_flag':cmt_flag})
 
 def new(request):
     brands = Brand.objects.all()
