@@ -97,4 +97,17 @@ def brand_filter(request , brand_id) :
    brand_tobacco=Tobacco.objects.filter(brand = brand_id)
    return render(request, 'goorm/brand_detail.html' ,{'tobaccos':brand_tobacco})    
 
+def search(request):
+    if request.GET.get('q'):
+        brd = Brand.objects.all()
+        grm = Tobacco.objects.all()
+        search_type = request.GET.get('fd_name')
+        search_data = request.GET.get('q')
+
+        if search_type == 'brand':
+            results = brd.filter(brd_name__icontains = search_data)
+        elif search_type == 'name':
+            results = grm.filter(name__icontains = search_data)
+            
+    return render(request, 'goorm/search.html', {  'results': results, 'search_type':search_type})
 # Create your views here.

@@ -65,17 +65,31 @@
               <input type="submit" value="Logout">
             </form>
           </li>
-          
-          
+
+
           <a class="nav-link" href="{% url 'accounts:mypage' user.username %}">
             <div style="text-align: center;">
-              <img src="{{ request.user.profile_img.url }}" alt="" style="width: 35px; height: 35px; border-radius: 40%; vertical-align: top;">
+              <img src="{{ request.user.profile_img.url }}" alt=""
+                style="width: 35px; height: 35px; border-radius: 40%; vertical-align: top;">
             </div>
           </a>
-          
+
 
           {% endif %}
           <!--로그인 기능 네브바-->
+
+          <!-- 네비바 검색기능 -->
+          <form class="form-inline" action="{% url 'goorm:search'%}" method="get">
+            <div class="input-group">
+                <select name="fd_name" id="" class="form-control">
+                    <option value="brand">brand</option>
+                    <option value="name">name</option>
+                </select>
+                <input type="text" class="form-control" name='q'>
+                <button class="btn btn-secondary" type="submit">Search</button>
+            </div>
+        </form>
+          <!-- 네비바 검색기능 -->
 
         </ul>
       </div>
@@ -103,8 +117,7 @@
 </html>
 
 <style>
-
-body {
-  padding-top: 80px;
-}
+  body {
+    padding-top: 80px;
+  }
 </style>
