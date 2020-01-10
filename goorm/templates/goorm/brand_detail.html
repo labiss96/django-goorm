@@ -1,15 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+<div class ="row">
 
 {%for tobacco in tobaccos%}
 
-<h1>{{tobacco}}</h1>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="{{tobacco.img.url}}" style='width:350px; height: 200px; display:block; margin:10px; text-align: center;' alt=""></a>
+        <div class="card-body">
+         <h4 class="card-title">
+             <a href = "{% url 'goorm:detail' tobacco.id %}"><h1>{{tobacco.name}}</h1></a>
+         </h4>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        </div>
+        </div>
+    </div>
+
 
 {% endfor %}
 
-
+</div>
 
 
 

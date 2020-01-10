@@ -9,9 +9,11 @@ def home(request):
     best_list = []
     if len(best_goorms) >= 3:
         for i in range(3):
+
             # score_star = '<small class="text-muted">'
             score_star = score_trans(best_goorms[i].score)
             # score_star += '</small>'
+
 
             best_goorms[i].star = score_star
             best_list.append(best_goorms[i])
