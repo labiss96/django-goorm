@@ -7,7 +7,8 @@ def home(request):
     best_goorms = Tobacco.objects.all().order_by('-score')
 
     best_list = []
-    for i in range(3):
-        best_list.append(best_goorms[i])
+    if len(best_goorms) >= 3:
+        for i in range(3):
+            best_list.append(best_goorms[i])
 
     return render(request, 'home.html', {"brands":brands, "best_grms":best_list})
