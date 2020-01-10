@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h1>새 담배를 작성해 주세요</h1>
 
 <form action = "{% url 'goorm:create' %}" method = "POST" enctype="multipart/form-data">
@@ -43,4 +46,5 @@
 
     <button type="submit">저장하기</button>
 </form>
-``
+
+{% endblock %}

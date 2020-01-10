@@ -1,4 +1,7 @@
 from django.db import models
+from accounts.models import Profile
+from django_fields import DefaultStaticImageField
+
 
 class Brand(models.Model):
     brd_name = models.CharField(max_length=100)
@@ -18,16 +21,19 @@ class Tobacco(models.Model):
     #total_like = models.PositiveIntegerField(default=0)
     #like_user = models.ManyToManyField()
     isMenthol = models.BooleanField(default = False)
-    img = models.ImageField(blank=True, null=True)
+    img = DefaultStaticImageField(upload_to='goorm_img/', blank=True, default_image_path='images/default_goorm_img.png')
     
     def __str__(self):
         return self.name
 
 class Comment(models.Model) :
-    post = models.ForeignKey(Tobacco, on_delete = models.CASCADE, related_name= 'comments')
-    writer = models.CharField(max_length= 200)
-    text = models.TextField()
-    created = models.DateTimeField(auto_now_add= True)
+    tobacco = models.ForeignKey(Tobacco, on_delete = models.CASCADE, related_name= 'comments')
+    writer = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name= 'writer')
+    pub_date = models.DateTimeField(auto_now_add= True)
+    contents = models.TextField()
+    score = models.PositiveIntegerField(default=3)
+    
+
 
     def __str__(self) :
         return self.writer + "의 댓글"
