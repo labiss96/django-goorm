@@ -12,6 +12,11 @@ urlpatterns = [
     path('brand_detail/<str:brand_id>', views.brand_filter, name='brand_filter'),
     path('delete/<int:tobacco_id>', views.delete, name='delete'),
     path('comment_delete/<int:comment_id>', views.comment_delete, name='comment_delete'),
+<<<<<<< HEAD
     path('search/', views.search, name='search'),
 
+=======
+    path('edit/<int:tobacco_id>', views.edit, name='edit'),
+    path('update/<int:tobacco_id>', views.update, name='update'),
+>>>>>>> 05c4339a4ed593d5cc27b42c710e0b02822b4627
 ]
