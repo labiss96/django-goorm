@@ -2,8 +2,17 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Tobacco, Comment, Brand
 
 def goormlist(request):
-    list = Tobacco.objects.all()
-    return render(request, 'goorm/list.html', {'list': list})
+    grm_list = Tobacco.objects.all()
+    brd_list = Brand.objects.all()
+
+    brd_grm = []
+    for brd in brd_list:
+        tmps = []
+        tmps.append(brd)
+        tmps.append(grm_list.filter(brand = brd))
+        brd_grm.append(tmps)
+
+    return render(request, 'goorm/list.html', {'grm_list': grm_list, 'brd_grm': brd_grm})
 
 def detail(request, tobacco_id):
     
