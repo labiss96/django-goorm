@@ -1,7 +1,6 @@
 
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
     <h1>Goorm List</h1>
 
     <a href = "{% url 'goorm:new' %}">새 구름 등록하기</a>
@@ -55,7 +54,6 @@
     </div>
     <hr>
     {% endfor %}
-</div>
 
 
 <script>
