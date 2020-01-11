@@ -8,31 +8,52 @@
         {% csrf_token %}
         
         <p>이름 : <input type="text" name="name" value="{{tobacco.name}}"></p>
-        <p>가격 : <input type="text" name="price" value="{{tobacco.price}}"></p>
-        출시일 :<input type="date" name="rel_date" value="{{tobacco.rel_date}}">
-        <br>
-        니코틴 : <input type="text" name="nicotine" value = "{{tobacco.nicotine}}">
-        <br>
-        <br>
-        타르 : <input type="text" name="TAR" value="{{tobacco.TAR}}">
-        <br>
-        <br>
-        타격감 : <input type="text" name="feel_of_hit" value="{{tobacco.feel_of_hit}}">
-        <br>
-        <br>
-        맨솔의 유무 : 
+        <p>가격 : <input type="number" name="price" value="{{tobacco.price}}"></p>
+        <p>출시일 :<input type="date" name="rel_date" value="{{tobacco.rel_date}}"></p>
+        
+        <p>니코틴 : <input type="number" step="0.1" name="nicotine" value = "{{tobacco.nicotine}}"></p>
+        
+        <p>타르 : <input type="number" step="0.1" name="TAR" value="{{tobacco.TAR}}"></p>
+        
+        <p>
+        타격감 : 
+        <input type="text" name="hit_val" value="{{tobacco.feel_of_hit}}" style="display: none;">
+        <input type="radio" name="feel_of_hit" value="상">상
+        <input type="radio" name="feel_of_hit" value="중">중
+        <input type="radio" name="feel_of_hit" value="하">하
+        </p>
+        
+        <p>
+        맨솔의 유무 :
+        <input type="text" name="menthol_val" value="{{tobacco.isMenthol}}" style="display: none;"> 
         <input type="radio" name="isMenthol" value="yes">Yes
         <input type="radio" name="isMenthol" value="no">No
-        <br>
-        <br>
-        이미지 : <input type="file" name = "tobacco_img" accept=".jpg, .png, .gif, .jpeg" >
-        <br>
-        <br>
+        </p>
+
+        <p>이미지 : <input type="file" name = "tobacco_img" accept=".jpg, .png, .gif, .jpeg" ></p>
             
         <hr>
         <div class="update">
             <input class="btn btn-dark" type="submit" style="background-color: #2b457a;" value="저장하기">
         </div>
+        <br>
     <form>
         
+    <script>
+        $(document).ready(function () {
+        //타격감, 맨솔유무 데이터를 가져와 radio의 초기값을 설정함.
+        var hitVal = $('input[name="hit_val"]').val();
+        $('input[name="feel_of_hit"]').val([hitVal]);
+
+        var mentholVal = $('input[name="menthol_val"]').val();
+        // alert(mentholVal)
+        if(mentholVal == 'False') {
+            $('input[name="isMenthol"]').val(["no"]); 
+        } else {
+            $('input[name="isMenthol"]').val(["yes"]); 
+        }
+        
+      });
+    </script>
+
 {% endblock %}
