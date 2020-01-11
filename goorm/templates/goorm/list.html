@@ -10,37 +10,35 @@
     <h3>Brand</h3>
     <br>
     <div class ="row">
+
         {% for brand in brd_list %}
-        <div class="col-lg-2 col-md-6 mb-4" style="text-align :center; ">
-        
-            <div class="card" style="width: 100%;">
+        <div class="col-md-2 col-xs-6 col-md-2 mb-2" style="text-align :center; ">
+            <div class="card card_hover" style="width: 100%;" onclick="fnMove('#{{brand.brd_name}}')" >
                 <img class="card-img-top" src="{{brand.brd_img.url}}" alt="" style="display: block; margin: 0px auto; margin-top: 10px; width: 70px; border-radius: 40%;">
                 <div class="card-body">
                 <p class="card-text">{{brand}}</p>
                 </div>
             </div>
-        
         </div>
         {% endfor %}
     </div>
-    
+
     <hr>
-    
     {% for brd in brd_grm %}
     <div class="card" style="width: 100%;">
-        <div class="card-header">
+        <div class="card-header" id="{{brd.0}}">
             {{brd.0}}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
                 <div class ="row">
                     {% for grm in brd.1 %}
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                          <a href="#" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img class="card-img-top" src="{{grm.img.url}}" alt=""></a>
+                      <div class="col-md-3 col-xs-2 mb-2">
+                        <div class="card card_hover h-100">
+                          <a href="" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img class="card-img-top" src="{{grm.img.url}}" alt=""></a>
                           <div class="card-body">
                             <h4 class="card-title">
-                              <a href="{% url 'goorm:detail' grm.id %}">{{grm.brand}} {{grm.name}}</a>
+                              <a class="stretched-link" href="{% url 'goorm:detail' grm.id %}">{{grm.brand}} {{grm.name}}</a>
                             </h4>
                             <h5>{{grm.price}}</h5>
                             <p class="card-text"></p>
@@ -52,12 +50,21 @@
                       </div> 
                     {% endfor %}
                 </div>
-               
             </li>
-    
         </ul>
     </div>
+    <hr>
     {% endfor %}
 </div>
 
-{% endblock%}
+
+<script>
+  // 자동 스크롤링.
+  function fnMove(seq) {
+      var offset = $(seq).offset().top;
+      $('html, body').animate({ scrollTop: offset }, 400);
+  }
+
+</script>
+
+{% endblock %}
