@@ -9,10 +9,28 @@ def goormlist(request):
     for brd in brd_list:
         tmps = []
         tmps.append(brd)
-        tmps.append(grm_list.filter(brand = brd))
+        grm_info = grm_list.filter(brand = brd)
+
+        for grm in grm_info:    
+            score_star = score_trans(grm.score)
+            grm.star = score_star
+
+        tmps.append(grm_info)
         brd_grm.append(tmps)
 
     return render(request, 'goorm/list.html', {'grm_list': grm_list, 'brd_grm': brd_grm, 'brd_list':brd_list})
+
+def score_trans(score):
+    if score < 2:
+        return '★☆☆☆☆'
+    elif 2 <= score < 3:
+        return '★★☆☆☆'
+    elif 3 <= score < 4:   
+        return '★★★☆☆'
+    elif 4 <= score < 5:
+        return '★★★★☆'    
+    else:
+        return '★★★★★'
 
 def detail(request, tobacco_id):
     

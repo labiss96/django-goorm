@@ -13,6 +13,7 @@
   <!-- Bootstrap core CSS -->
   <link href="{% static './vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 
 </head>
@@ -46,6 +47,18 @@
 
           <!--담배기능 리스트 작업-->
 
+          <!-- 네비바 검색기능 -->
+          <form class="form-inline" action="{% url 'goorm:search'%}" method="get">
+            <div class="input-group">
+                <select name="fd_name" id="" class="form-control">
+                    <option value="brand">brand</option>
+                    <option value="name">name</option>
+                </select>
+                <input type="text" class="form-control" name='q'>
+                <button class="btn btn-secondary" type="submit">Search</button>
+            </div>
+        </form>
+          <!-- 네비바 검색기능 -->
 
           <!--로그인 기능 네브바-->
           {% if not user.is_authenticated %}
@@ -79,18 +92,7 @@
           {% endif %}
           <!--로그인 기능 네브바-->
 
-          <!-- 네비바 검색기능 -->
-          <form class="form-inline" action="{% url 'goorm:search'%}" method="get">
-            <div class="input-group">
-                <select name="fd_name" id="" class="form-control">
-                    <option value="brand">brand</option>
-                    <option value="name">name</option>
-                </select>
-                <input type="text" class="form-control" name='q'>
-                <button class="btn btn-secondary" type="submit">Search</button>
-            </div>
-        </form>
-          <!-- 네비바 검색기능 -->
+          
 
         </ul>
       </div>
@@ -114,6 +116,18 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{% static './vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static './vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+    // executes when HTML-Document is loaded and DOM is ready
+    // console.log("document is ready");
+
+    $(".card_hover").hover( function() {
+        $(this).addClass('shadow').css('cursor', 'pointer'); 
+      }, function() {
+        $(this).removeClass('shadow');
+      });
+    });
+  </script>
 
 </body>
 
@@ -122,5 +136,8 @@
 <style>
   body {
     padding-top: 80px;
+  }
+  .card:hover {
+    text-decoration: none;
   }
 </style>
