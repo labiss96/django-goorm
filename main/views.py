@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from goorm.models import Tobacco, Brand
+from .models import Buying_Log
 # Create your views here.
 
 def home(request):
@@ -19,6 +20,17 @@ def home(request):
             best_list.append(best_goorms[i])
 
     return render(request, 'home.html', {"brands":brands, "best_grms":best_list})
+
+def buy_tobacco(request):
+    tobaccos = Tobacco.objects.all()
+    return render(request, 'buy_tobacco.html',{"tobaccos":tobaccos})
+
+def save_log(request):
+    log = Buying_Log()
+    log.buyer = request.user
+    log.product = Tobacco.objects.get(id =request.GET['tobacco'])
+    log.save()
+    return redirect('home')
 
 def score_trans(score):
     if score < 2:

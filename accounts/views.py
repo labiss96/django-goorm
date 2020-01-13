@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib import auth
+from datetime import datetime
+from django.utils.dateformat import DateFormat
 from .models import Profile
+from main.models import Buying_Log
 
 # Create your views here
 
@@ -50,7 +53,13 @@ def logout(request):
 
 def mypage(request, profile_name):
     mypage_info = Profile.objects.get(username=profile_name)
-    return render(request,'accounts/mypage.html',{'mypage_info':mypage_info})
+    log = Buying_Log.objects.filter(buyer = mypage_info)
+    log_list = []
+    for b in log:
+       log_list.append(b)
+    a = len(log_list)
+    money = a*4500
+    return render(request,'accounts/mypage.html',{'mypage_info':mypage_info,'log':log_list,'money':money})
 
 def edit(request, profile_name):
     edit_mypage=Profile.objects.get(username=profile_name)
