@@ -9,10 +9,28 @@ def goormlist(request):
     for brd in brd_list:
         tmps = []
         tmps.append(brd)
-        tmps.append(grm_list.filter(brand = brd))
+        grm_info = grm_list.filter(brand = brd)
+
+        for grm in grm_info:    
+            score_star = score_trans(grm.score)
+            grm.star = score_star
+
+        tmps.append(grm_info)
         brd_grm.append(tmps)
 
-    return render(request, 'goorm/list.html', {'grm_list': grm_list, 'brd_grm': brd_grm})
+    return render(request, 'goorm/list.html', {'grm_list': grm_list, 'brd_grm': brd_grm, 'brd_list':brd_list})
+
+def score_trans(score):
+    if score < 2:
+        return '★☆☆☆☆'
+    elif 2 <= score < 3:
+        return '★★☆☆☆'
+    elif 3 <= score < 4:   
+        return '★★★☆☆'
+    elif 4 <= score < 5:
+        return '★★★★☆'    
+    else:
+        return '★★★★★'
 
 def detail(request, tobacco_id):
     
@@ -45,7 +63,12 @@ def detail(request, tobacco_id):
     tobacco_detail.score = total_score
     tobacco_detail.save()
 
-    return render(request, 'goorm/detail.html',{'tobacco': tobacco_detail, 'comments':comments})
+    cmt_flag = False
+    for cmt in comments:
+        if request.user == cmt.writer:
+            cmt_flag = True 
+
+    return render(request, 'goorm/detail.html',{'tobacco': tobacco_detail, 'comments':comments, 'cmt_flag':cmt_flag})
 
 def new(request):
     brands = Brand.objects.all()
@@ -123,5 +146,5 @@ def search(request):
         elif search_type == 'name':
             results = grm.filter(name__icontains = search_data)
 
-    return render(request, 'goorm/search.html', {  'results': results, 'search_type':search_type})
+    return render(request, 'goorm/search.html', { 'results': results, 'search_type':search_type})
 # Create your views here.

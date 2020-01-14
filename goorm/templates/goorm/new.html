@@ -1,50 +1,53 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container">
+    <h1>Add Goorm</h1>
 
-<h1>새 담배를 작성해 주세요</h1>
+    <form action = "{% url 'goorm:create' %}" method = "POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+        브랜드:
+        <select name="brand">
+        {% for brand in brands %}
+            <option value="{{brand.brd_name}}" onclick="this.form.newBrand.disabled=true">{{brand.brd_name}}</option>
+        {% endfor %}
+            <option value="isNewBrand" onclick="this.form.newBrand.disabled=false">브랜드 추가</option>
+        </select>
+        <input type="text" name="newBrand" disabled>
+        <br><br>
+        이름 : <input type="text" name="name">
+        <br>
+        <br>
+        가격 : <input type="number" name="price">
+        <br>
+        <br>
+        출시일 :<input type="date" min="yyy" max="zzz" name="rel_date">
+        <br>
+        <br> 
+        니코틴 : <input type="number" step="0.1" name="nicotine">
+        <br>
+        <br>
+        타르 : <input type="number" step="0.1" name="TAR">
+        <br>
+        <br>
+        타격감 : 
+        <input type="radio" name="feel_of_hit" value="상">상
+        <input type="radio" name="feel_of_hit" value="중">중
+        <input type="radio" name="feel_of_hit" value="하">하
+        <br>
+        <br>
+        맨솔의 유무 : 
+        <input type="radio" name="isMenthol" value="yes">Yes
+        <input type="radio" name="isMenthol" value="no">No
+        <br>
+        <br>
+        이미지 : <input type="file" name = "tobacco_img" accept=".jpg, .png, .gif, .jpeg">
+        <br>
+        <br>
 
-<form action = "{% url 'goorm:create' %}" method = "POST" enctype="multipart/form-data">
-    {% csrf_token %} 
-    브랜드:
-    <select name="brand">
-    {% for brand in brands %}
-        <option value="{{brand.brd_name}}">{{brand.brd_name}}</option>
-    {% endfor %}
-        <option value="isNewBrand">브랜드 추가</option>
-    </select>
-    <input type="text" name="newBrand" id="">
-    <br>
-    이름 : <input type="text" name="name">
-    <br>
-    <br>
-    가격 : <input type="text" name="price">
-    <br>
-    <br>
-     출시일 :<input type="date" value="xxx" min="yyy" max="zzz" name="rel_date">
-    <br>
-    <br> 
-    니코틴 : <input type="text" name="nicotine">
-    <br>
-    <br>
-    타르 : <input type="text" name="TAR">
-    <br>
-    <br>
-    타격감 : <input type="text" name="feel_of_hit">
-    <br>
-    <br>
-    맨솔의 유무 : 
-    <input type="radio" name="isMenthol" value="yes">Yes
-    <input type="radio" name="isMenthol" value="no">No
-    <br>
-    <br>
-    이미지 : <input type="file" name = "tobacco_img" accept=".jpg, .png, .gif, .jpeg">
-    <br>
-    <br>
-
-   
+    
 
 
-    <button type="submit">저장하기</button>
-</form>
-
+        <button type="submit">저장하기</button>
+    </form>
+</div>
 {% endblock %}

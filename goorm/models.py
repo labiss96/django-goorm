@@ -5,6 +5,7 @@ from django_fields import DefaultStaticImageField
 
 class Brand(models.Model):
     brd_name = models.CharField(max_length=100)
+    brd_img = DefaultStaticImageField(upload_to='brand_img/', blank=True, default_image_path='images/default_goorm_img.png')
 
     def __str__(self):
         return self.brd_name
@@ -13,7 +14,8 @@ class Tobacco(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='tobacco')
     name = models.CharField(max_length=50)
     price = models.IntegerField(blank=True)
-    rel_date = models.DateTimeField(blank=True)
+    # rel_date = models.DateTimeField(blank=True)
+    rel_date = models.CharField(max_length=100)
     nicotine =  models.FloatField()
     TAR = models.FloatField()
     feel_of_hit = models.CharField(max_length=10)

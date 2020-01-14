@@ -3,7 +3,7 @@
 
 <!--만약에 브랜드를 검색했을때-->
 {% if search_type == 'brand' %}
-<h1>브랜드 검색결과</h1>
+<h1>브랜드 검색결과 !</h1>
 {%for brand in results%}
 
 <a href="{% url 'goorm:brand_filter' brand.id %}" class="list-group-item">{{brand}}</a>
@@ -12,13 +12,13 @@
 
 <!-- 담배 이름을 검색했을때 -->
 {% else %}
-dd
 
-<h1>담배</h1>
+<h1>담배 검색결과</h1>
+
 
 {%for tobacco in results%}
 
-<a href="{% url 'goorm:detail' grm.id %}">{{tobacco}}</a>
+<a href = "{% url 'goorm:detail' tobacco.id %}">{{tobacco}}</a>
 
 {% endfor %}
 
