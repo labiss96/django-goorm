@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<form action="{% url 'save_log' %}" enctype="multipart/form-data">
+<h1>나는
+    <select name="tobacco">
+    {% for tobacco in tobaccos %}
+        <option value="{{tobacco.id}}">{{tobacco.brand}} {{tobacco.name}}</option>
+    {% endfor %}
+    </select>
+ <button type = "submit">를 샀습니다.</button>
+ </h1>
+</form>
+
+{% endblock%}
