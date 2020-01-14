@@ -9,14 +9,60 @@
       <div class="col-lg-3">
 
         <h1 class="my-4">Goorm</h1>
+        
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          Buy Goorm
+        </button>
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Buy Goorm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <form class="tagForm" id="tag-form" action="{% url 'save_log' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %} 
+                <div class="modal-body">
+                    <label for="brdName">Brand : </label>
+                    <select name="brdName" id="modal_brd">
+                      <option value="">--브랜드 선택--</option>
+                      {% for brd in brands %}
+                        <option value="{{brd.brd_name}}">{{brd.brd_name}}</option>
+                      {% endfor %}
+                    </select>
+
+                    {% for brd, grm in goorm_dic.items %}  
+                      <select name="grmName" class="allGrm" id="{{brd}}">
+                        {% for goorm in grm %}
+                          <option value="{{goorm.id}}">{{goorm.name}}</option>
+                        {% endfor %}                  
+                      </select>
+                    {% endfor %}
+    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input id="tag-form-submit" type="submit" class="btn btn-primary" value="Buy">
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+        <!-- End Modal -->
+
+        <br><br>
         
         <div class="list-group">
           {% for brand in brands %}
           <a href="{% url 'goorm:brand_filter' brand.id %}" class="list-group-item">{{brand}}</a>
           {% endfor %}
-
-          
         </div>
 
       </div>
@@ -69,6 +115,7 @@
               </div>
             </div>  
           {% endfor %}
+
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
@@ -177,5 +224,41 @@
   </div>
   <!-- /.container -->
 
+<script>
+  // modal form submit
+$(function() {
+  $('#tag-form-submit').on('click', function(e) {
+      e.preventDefault();
+      $.ajax({
+          type: "POST",
+          url: "{% url 'save_log' %}",
+          data: $('form.tagForm').serialize(),
+          success: function() {
+              alert('정상적으로 구매되었음');
+              location.reload();
+          },
+          error: function() {
+              alert('구매 실패!');
+          }
+      });
+      return false;
+  });
+});
+
+
+$('#modal_brd').change(function(){
+  var selectBrd = $("#modal_brd option:selected").val();
+
+  $('.allGrm').hide();
+  $('#'+selectBrd).show();
+
+});
+</script>
+
+<style>
+.allGrm {
+  display: none;
+}
+</style>
 
 {% endblock%}
