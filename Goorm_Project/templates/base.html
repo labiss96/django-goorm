@@ -12,6 +12,8 @@
 
   <!-- Bootstrap core CSS -->
   <link href="{% static './vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 </head>
 
@@ -36,13 +38,29 @@
             </a>
           </li>
 
+          {% if request.user.username == 'admin' %}
           <li class="nav-item active">
-            <a class="nav-link" href="#">뭐할까 여기는
+            <a class="nav-link" href="{% url 'goorm:new' %}">Add Goorm
               <span class="sr-only">(current)</span>
             </a>
           </li>
-
+          {% endif %}
+          
           <!--담배기능 리스트 작업-->
+
+
+          <!-- 네비바 검색기능 -->
+          <form class="form-inline" action="{% url 'goorm:search'%}" method="get">
+            <div class="input-group">
+                <select name="fd_name" id="" class="form-control">
+                    <option value="brand">brand</option>
+                    <option value="name">name</option>
+                </select>
+                <input type="text" class="form-control" name='q'>
+                <button class="btn btn-secondary" type="submit">Search</button>
+            </div>
+        </form>
+          <!-- 네비바 검색기능 -->
 
           <!--로그인 기능 네브바-->
           {% if not user.is_authenticated %}
@@ -85,18 +103,22 @@
               <button class="btn btn-secondary" type="submit">Search</button>
             </div>
           </form>
+
         </ul>
       </div>
     </div>
   </nav>
 
-  {% block content %}
-  {% endblock %}
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+      <p class="m-0 text-center text-white">Copyright &copy; Project Goorm 2020</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -104,6 +126,18 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{% static './vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static './vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+    // executes when HTML-Document is loaded and DOM is ready
+    // console.log("document is ready");
+
+    $(".card_hover").hover( function() {
+        $(this).addClass('shadow').css('cursor', 'pointer'); 
+      }, function() {
+        $(this).removeClass('shadow');
+      });
+    });
+  </script>
 
 </body>
 
@@ -112,5 +146,9 @@
 <style>
   body {
     padding-top: 80px;
+    box-sizing: border-box;
+  }
+  .card:hover {
+    text-decoration: none;
   }
 </style>

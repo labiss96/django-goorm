@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1 style="color: red;">ERROR!</h1>
+    <br>
+    <h2>{{err}}</h2>
+    <br>
+    <h3><a href="{% url 'accounts:login' %}">Login</a></h3>
+    <br><br>
+
+
+{% endblock %}

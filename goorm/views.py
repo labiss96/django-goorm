@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Tobacco, Comment, Brand
+from django.contrib.auth.decorators import login_required
 
 def goormlist(request):
     grm_list = Tobacco.objects.all()
@@ -9,10 +10,28 @@ def goormlist(request):
     for brd in brd_list:
         tmps = []
         tmps.append(brd)
-        tmps.append(grm_list.filter(brand = brd))
+        grm_info = grm_list.filter(brand = brd)
+
+        for grm in grm_info:    
+            score_star = score_trans(grm.score)
+            grm.star = score_star
+
+        tmps.append(grm_info)
         brd_grm.append(tmps)
 
     return render(request, 'goorm/list.html', {'grm_list': grm_list, 'brd_grm': brd_grm, 'brd_list':brd_list})
+
+def score_trans(score):
+    if score < 2:
+        return '★☆☆☆☆'
+    elif 2 <= score < 3:
+        return '★★☆☆☆'
+    elif 3 <= score < 4:   
+        return '★★★☆☆'
+    elif 4 <= score < 5:
+        return '★★★★☆'    
+    else:
+        return '★★★★★'
 
 def detail(request, tobacco_id):
     
@@ -52,10 +71,15 @@ def detail(request, tobacco_id):
 
     return render(request, 'goorm/detail.html',{'tobacco': tobacco_detail, 'comments':comments, 'cmt_flag':cmt_flag})
 
+@login_required
 def new(request):
-    brands = Brand.objects.all()
-
-    return render(request, 'goorm/new.html', {'brands':brands} )
+    if request.user.username == 'admin':
+        brands = Brand.objects.all()
+        return render(request, 'goorm/new.html', {'brands':brands} )
+    else:
+        err = '권한이 없습니다.'
+        return render(request, 'accounts/error.html', {'err':err} )
+    
 
 def create(request):
     if request.POST['brand']=='isNewBrand':
@@ -81,10 +105,14 @@ def create(request):
     new_tobacco.save()
     return redirect('/goorm/' +str(new_tobacco.id))
 
-
+@login_required
 def edit(request, tobacco_id) :
-    edit_tobacco = Tobacco.objects.get(id=tobacco_id)
-    return render(request, 'goorm/edit.html', {'tobacco' : edit_tobacco})
+    if request.user.username == 'admin':
+        edit_tobacco = Tobacco.objects.get(id=tobacco_id)
+        return render(request, 'goorm/edit.html', {'tobacco' : edit_tobacco})
+    else:
+        err = '권한이 없습니다.'
+        return render(request, 'accounts/error.html', {'err':err} )
 
 
 def update(request, tobacco_id):
@@ -102,15 +130,33 @@ def update(request, tobacco_id):
     update_tobacco.save()
     return redirect('/goorm/' + str(update_tobacco.id))
 
+@login_required
 def delete(request, tobacco_id):
-    delete_t= Tobacco.objects.get(id = tobacco_id)
-    delete_t.delete()
-    return redirect('goorm:goormlist')
+    if request.user.username == 'admin':
+        delete_t= Tobacco.objects.get(id = tobacco_id)
+        delete_t.delete()
+        return redirect('goorm:goormlist')
+    else:
+        err = '권한이 없습니다.'
+        return render(request, 'accounts/error.html', {'err':err} )
 
 def comment_delete(request, comment_id) : 
     delete_comment = Comment.objects.get(id=comment_id)
     delete_comment.delete()
     return redirect('/goorm/' + str(delete_comment.tobacco.id))
+
+def comment_edit(request, comment_id) :
+    edit_comment = Comment.objects.get(id=comment_id)
+    return render(request, 'goorm/comment_edit.html', {'comment' : edit_comment})
+
+def comment_update(request, comment_id):
+    update_comment = Comment.objects.get(id=comment_id)
+    update_comment.contents = request.POST['comment_text']
+    update_comment.score = request.POST['comment_score']
+    update_comment.save()
+    return redirect('/goorm/' + str(update_comment.tobacco.id))
+    
+    
 
 def brand_filter(request , brand_id) :
    brand_tobacco=Tobacco.objects.filter(brand = brand_id)

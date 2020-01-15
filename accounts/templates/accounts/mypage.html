@@ -11,6 +11,13 @@
     <p><a href="{% url 'accounts:edit' mypage_info.username %}">회원정보 수정하기</a>
     </p>
 </div>
+<div>
+    구입한 담배 리스트 :
+    {% for dam in log%}
+    {{dam.product}} {{dam.date}}
+    {% endfor %}
+    당신은 지금까지 담배에 <strong>{{money}}</strong>원을 쓰셨습니다. 
+</div>
 
 
 {% endblock %}
