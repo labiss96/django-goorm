@@ -13,7 +13,6 @@
   <!-- Bootstrap core CSS -->
   <link href="{% static './vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-
 </head>
 
 <body>
@@ -45,7 +44,6 @@
 
           <!--담배기능 리스트 작업-->
 
-
           <!--로그인 기능 네브바-->
           {% if not user.is_authenticated %}
           <li class="nav-item active">
@@ -66,7 +64,6 @@
             </form>
           </li>
 
-
           <a class="nav-link" href="{% url 'accounts:mypage' user.username %}">
             <div style="text-align: center;">
               <img src="{{ request.user.profile_img.url }}" alt=""
@@ -74,23 +71,20 @@
             </div>
           </a>
 
-
           {% endif %}
-          <!--로그인 기능 네브바-->
 
           <!-- 네비바 검색기능 -->
           <form class="form-inline" action="{% url 'goorm:search'%}" method="get">
             <div class="input-group">
-                <select name="fd_name" id="" class="form-control">
-                    <option value="brand">brand</option>
-                    <option value="name">name</option>
-                </select>
-                <input type="text" class="form-control" name='q'>
-                <button class="btn btn-secondary" type="submit">Search</button>
+              <select name="fd_name" id="" class="form-control">
+                <option value="brand">brand</option>
+                <option value="name">name</option>
+              </select>
+              <br>
+              <input type="text" class="form-control" name='q'>
+              <button class="btn btn-secondary" type="submit">Search</button>
             </div>
-        </form>
-          <!-- 네비바 검색기능 -->
-
+          </form>
         </ul>
       </div>
     </div>
@@ -98,7 +92,6 @@
 
   {% block content %}
   {% endblock %}
-
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">

@@ -1,24 +1,421 @@
 {% extends 'base.html' %}
 {% block content %}
-<form method="POST" action="{% url 'accounts:signup' %}" enctype="multipart/form-data">
-    {% csrf_token %}
 
-    아이디: <input type="text" name="username" required="required" placeholder="Your id"><br>
-    비밀번호:<input type="password" name="password1" required="required" placeholder="Your password"><br>
-    비밀번호 확인:<input type="password" name="password2" required="required" placeholder="Your password"><br>
-    성별:
-    <input type="radio" name="sex" required="required" value="남자">남자
-    <input type="radio" name="sex" required="required" value="여자">여자
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /*라벨은 원하는대로 커스텀하고*/
+
+        .fileRegiBtn label {
+
+            display: inline-block;
+
+            padding: .5em .75em;
+
+            color: #ffffff;
+
+            font-size: inherit;
+
+            line-height: normal;
+
+            vertical-align: middle;
+
+            background-color: #FC7D01;
+
+            cursor: pointer;
+
+            border: 1px solid #ebebeb;
+
+            border-bottom-color: #e2e2e2;
+
+            border-radius: .25em;
+
+        }
+
+        /*파일선택시 선택된 파일명이 붙는것을 가려준다*/
+
+        .fileRegiBtn input[type="file"] {
+
+            position: absolute;
+
+            width: 1px;
+
+            height: 1px;
+
+            padding: 0;
+
+            margin: -1px;
+
+            overflow: hidden;
+
+            clip: rect(0, 0, 0, 0);
+
+            border: 0;
+
+        }
+    </style>
+
+
+
+
+
+
+    <style>
+        input[type=password] {
+
+            background-color: #f6f6f6;
+
+            border: none;
+
+            color: #0d0d0d;
+
+            padding: 15px 32px;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            display: inline-block;
+
+            font-size: 16px;
+
+            margin: 5px;
+
+            width: 85%;
+
+            border: 2px solid #f6f6f6;
+
+            -webkit-transition: all 0.5s ease-in-out;
+
+            -moz-transition: all 0.5s ease-in-out;
+
+            -ms-transition: all 0.5s ease-in-out;
+
+            -o-transition: all 0.5s ease-in-out;
+
+            transition: all 0.5s ease-in-out;
+
+            -webkit-border-radius: 5px 5px 5px 5px;
+
+            border-radius: 5px 5px 5px 5px;
+
+        }
+
+        input[type=password]:focus {
+
+            background-color: #fff;
+
+            border-bottom: 2px solid #5fbae9;
+
+        }
+
+        input[type=password]:placeholder {
+
+            color: #cccccc;
+
+        }
+
+        input[type=password] {
+
+            background-color: #f6f6f6;
+
+            border: none;
+
+            color: #0d0d0d;
+
+            padding: 15px 32px;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            display: inline-block;
+
+            font-size: 16px;
+
+            margin: 5px;
+
+            width: 50%;
+
+            border: 2px solid #f6f6f6;
+
+            -webkit-transition: all 0.5s ease-in-out;
+
+            -moz-transition: all 0.5s ease-in-out;
+
+            -ms-transition: all 0.5s ease-in-out;
+
+            -o-transition: all 0.5s ease-in-out;
+
+            transition: all 0.5s ease-in-out;
+
+            -webkit-border-radius: 5px 5px 5px 5px;
+
+            border-radius: 5px 5px 5px 5px;
+
+        }
+
+        input[type=password]:focus {
+
+            background-color: #fff;
+
+            border-bottom: 2px solid #5fbae9;
+
+        }
+
+        input[type=password]:placeholder {
+
+            color: #cccccc;
+
+        }
+
+        /* 여기부터는 아이디 */
+
+        input[type=text] {
+
+            background-color: #f6f6f6;
+
+            border: none;
+
+            color: #0d0d0d;
+
+            padding: 15px 32px;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            display: inline-block;
+
+            font-size: 16px;
+
+            margin: 5px;
+
+            width: 85%;
+
+            border: 2px solid #f6f6f6;
+
+            -webkit-transition: all 0.5s ease-in-out;
+
+            -moz-transition: all 0.5s ease-in-out;
+
+            -ms-transition: all 0.5s ease-in-out;
+
+            -o-transition: all 0.5s ease-in-out;
+
+            transition: all 0.5s ease-in-out;
+
+            -webkit-border-radius: 5px 5px 5px 5px;
+
+            border-radius: 5px 5px 5px 5px;
+
+        }
+
+        input[type=text]:focus {
+
+            background-color: #fff;
+
+            border-bottom: 2px solid #5fbae9;
+
+        }
+
+        input[type=text]:placeholder {
+
+            color: #cccccc;
+
+        }
+
+        input[type=text] {
+
+            background-color: #f6f6f6;
+
+            border: none;
+
+            color: #0d0d0d;
+
+            padding: 15px 32px;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            display: inline-block;
+
+            font-size: 16px;
+
+            margin: 5px;
+
+            width: 50%;
+
+            border: 2px solid #f6f6f6;
+
+            -webkit-transition: all 0.5s ease-in-out;
+
+            -moz-transition: all 0.5s ease-in-out;
+
+            -ms-transition: all 0.5s ease-in-out;
+
+            -o-transition: all 0.5s ease-in-out;
+
+            transition: all 0.5s ease-in-out;
+
+            -webkit-border-radius: 5px 5px 5px 5px;
+
+            border-radius: 5px 5px 5px 5px;
+
+        }
+
+        input[type=text]:focus {
+
+            background-color: #fff;
+
+            border-bottom: 2px solid #5fbae9;
+
+        }
+
+        input[type=text]:placeholder {
+
+            color: #cccccc;
+
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 4</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+        p {
+            margin: 20px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <div class="jumbotron text-center">
+        <h1>구름과자
+            <br>프로젝트</h1>
+        <p>세계최강 담배커뮤니티 구름과자에 오신걸 환영합니다</p>
+        <br>
+        당신의 계정을 생성하고 커뮤니티를 즐겨보세요
+    </div>
     <br>
-    흡연시작년도:<input type="month" name="start_year" required="required" ><br>
+    <div class="container" style="text-align: center;">
+        <form method="POST" action="{% url 'accounts:signup' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="username" required="required" placeholder="Your id"><br>
+            <input type="password" name="password1" required="required" placeholder="Your password"><br>
+            <input type="password" name="password2" required="required" placeholder="Certificate Your password"><br>
 
-    프로필 사진: 
-    <input type="file" name="profile_img" accept=".jpg, .gif, .jpeg, .png">
-    <br><br>
-    <button type="submit">Sign up</button>
+            <!-- 성별부터 -->
+            <div class="container" style="width: 50%;">
+                <div class="row">
+                    <div class="col">
+                        <p><strong>성별</strong></p>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons" style="text-align: center;">
+
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="sex" required="required" value="남자" id="jb-radio-2"> 남자
+                            </label>
+                            <br>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="sex" required="required" value="여자" id="jb-radio-3"> 여자
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+            <!-- <input type="radio" name="sex" required="required" value="남자">남자
+            <input type="radio" name="sex" required="required" value="여자">여자
+            <br> -->
+
+            <!-- 흡연 시작년도 -->
+            <input type="month" style="text-align: center;" class="btn btn-Dark" name="start_year"
+                required="required"><br>
+
+            <!-- 프로필 사진: -->
+
+            <!-- <input type="file" class="btn btn-file" name="profile_img" accept=".jpg, .gif, .jpeg, .png">
+            <br><br> -->
+            <!-- 커버이미지 들어오는 부분 (임시로 이미지를 넣어줬다)-->
+
+            <div class="form-group" style="margin: 8px 0 8px;">
+
+                <input id="file" class=" form-control" name="profile_img" accept=".jpg, .gif, .jpeg ,.png" value="파일선택"
+                    disabled="disabled" style="width:50%; display: inline;">
+
+                <div class="fileRegiBtn btn-Dark">
+
+                    <label for="myFileUp" class="btn btn-Dark">파일등록하기</label>
+
+                    <input type="file" name="profile_img" accept=".jpg, .gif, .jpeg, .png" id="myFileUp">
+
+                </div>
+
+            </div>
+
+            <!-- 회원가입 누르기 버튼 -->
+            <button type="submit" class="btn btn-Dark" style="width: 50%;">회원가입</a>
+
+        </form>
+    </div>
+
+    <!-- 스크립트 부분 가져온거임 -->
+
+    <script>function readURL(input) {
+
+            console.log("버튼클릭함1");
+
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    $('#cover').attr('src', e.target.result);        //cover src로 붙여지고
+
+                    $('#fileName').val(input.files[0].name);    //파일선택 form으로 파일명이 들어온다
+
+                }
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+
+        }
 
 
-</form>
 
+        $("#myFileUp").change(function () {
+
+            readURL(this);
+
+            console.log("이미지 바뀜?");
+
+        });</script>
+
+</body>
+
+</html>
 
 {% endblock %}
