@@ -7,25 +7,23 @@
 
 <div class="row">
 
-    {%for tobacco in tobaccos%}
+    {% for tobacco in tobaccos %}
 
     <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="{{tobacco.img.url}}"
-                    style='height: auto; display:block; padding:10px; text-align: center;' alt=""></a>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="{% url 'goorm:detail' tobacco.id %}" class="p-2 text-muted">
-                        <h1>{{tobacco.name}}</h1>
-                    </a>
-                </h4>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-            </div>
+        <div class="card card_hover h-100">
+        <a href="#" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img class="card-img-top" src="{{tobacco.img.url}}" alt=""></a>
+        <div class="card-body"  >
+            <h4 class="card-title">
+            <a class="stretched-link text-muted" href="{% url 'goorm:detail' tobacco.id %}" >{{tobacco.brand}} {{tobacco.name}}</a>
+            </h4>
+            <h5>{{tobacco.price}}</h5>
+            <p class="card-text"></p>
         </div>
-    </div>
-
+        <div class="card-footer" style="text-align: center;">
+            <small class="text-muted"></small>
+        </div>
+        </div>
+    </div> 
 
     {% endfor %}
 
