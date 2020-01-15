@@ -8,11 +8,11 @@
         브랜드:
         <select name="brand">
         {% for brand in brands %}
-            <option value="{{brand.brd_name}}" onclick="this.form.newBrand.disabled=true">{{brand.brd_name}}</option>
+            <option value="{{brand.brd_name}}" >{{brand.brd_name}}</option>
         {% endfor %}
-            <option value="isNewBrand" onclick="this.form.newBrand.disabled=false">브랜드 추가</option>
+            <option value="isNewBrand" >브랜드 추가</option>
         </select>
-        <input type="text" name="newBrand" disabled>
+        <input type="text" name="newBrand">
         <br><br>
         이름 : <input type="text" name="name">
         <br>

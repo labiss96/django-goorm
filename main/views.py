@@ -9,8 +9,8 @@ def home(request):
 
 # top3 Goorm 표시를 위한 데이터처리.
     best_list = []
-    if len(best_goorms) >= 3:
-        for i in range(3):
+    if len(best_goorms) >= 4:
+        for i in range(4):
             score_star = score_trans(best_goorms[i].score)
             best_goorms[i].star = score_star
             best_list.append(best_goorms[i])
