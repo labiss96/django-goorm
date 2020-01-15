@@ -11,4 +11,5 @@ urlpatterns = [
     path('edit/<str:profile_name>',views.edit,name='edit'),
     path('update/<str:profile_name>',views.update,name='update'),
     path('mypage/<str:profile_name>', views.mypage, name='mypage'),
+    path('error/', views.error, name='error'),
 ]

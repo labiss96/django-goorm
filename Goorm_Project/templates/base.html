@@ -38,6 +38,15 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
+
+          {% if request.user.username == 'admin' %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'goorm:new' %}">Add Goorm
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          {% endif %}
+          
           <!--담배기능 리스트 작업-->
 
           <!-- 네비바 검색기능 -->

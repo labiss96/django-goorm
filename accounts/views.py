@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from datetime import datetime
 from django.utils.dateformat import DateFormat
@@ -61,9 +62,14 @@ def mypage(request, profile_name):
     money = a*4500
     return render(request,'accounts/mypage.html',{'mypage_info':mypage_info,'log':log_list,'money':money})
 
+@login_required
 def edit(request, profile_name):
-    edit_mypage=Profile.objects.get(username=profile_name)
-    return render(request, 'accounts/edit.html', {'profile':edit_mypage})    
+    if request.user.username == profile_name:
+        edit_mypage=Profile.objects.get(username=profile_name)
+        return render(request, 'accounts/edit.html', {'profile':edit_mypage})    
+    else:
+        err = '권한이 없습니다.'
+        return render(request, 'accounts/error.html', {'err':err})    
 
 def update(request, profile_name):
     update_mypage = Profile.objects.get (username = profile_name)
@@ -74,3 +80,7 @@ def update(request, profile_name):
 
     update_mypage.save()
     return redirect('/accounts/mypage/' + str(profile_name))     
+
+def error(request):
+    err = '로그인이 필요한 작업입니다!'
+    return render(request, 'accounts/error.html', {'err':err})
