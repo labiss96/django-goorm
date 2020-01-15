@@ -34,7 +34,6 @@ class Comment(models.Model) :
     pub_date = models.DateTimeField(auto_now_add= True)
     contents = models.TextField()
     score = models.PositiveIntegerField(default=3)
-    
 
 
     def __str__(self) :

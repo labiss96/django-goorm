@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Tobacco, Comment, Brand
+from django.contrib.auth.decorators import login_required
 
 def goormlist(request):
     grm_list = Tobacco.objects.all()
@@ -70,10 +71,15 @@ def detail(request, tobacco_id):
 
     return render(request, 'goorm/detail.html',{'tobacco': tobacco_detail, 'comments':comments, 'cmt_flag':cmt_flag})
 
+@login_required
 def new(request):
-    brands = Brand.objects.all()
-
-    return render(request, 'goorm/new.html', {'brands':brands} )
+    if request.user.username == 'admin':
+        brands = Brand.objects.all()
+        return render(request, 'goorm/new.html', {'brands':brands} )
+    else:
+        err = '권한이 없습니다.'
+        return render(request, 'accounts/error.html', {'err':err} )
+    
 
 def create(request):
     if request.POST['brand']=='isNewBrand':
@@ -99,10 +105,14 @@ def create(request):
     new_tobacco.save()
     return redirect('/goorm/' +str(new_tobacco.id))
 
-
+@login_required
 def edit(request, tobacco_id) :
-    edit_tobacco = Tobacco.objects.get(id=tobacco_id)
-    return render(request, 'goorm/edit.html', {'tobacco' : edit_tobacco})
+    if request.user.username == 'admin':
+        edit_tobacco = Tobacco.objects.get(id=tobacco_id)
+        return render(request, 'goorm/edit.html', {'tobacco' : edit_tobacco})
+    else:
+        err = '권한이 없습니다.'
+        return render(request, 'accounts/error.html', {'err':err} )
 
 
 def update(request, tobacco_id):
@@ -120,10 +130,15 @@ def update(request, tobacco_id):
     update_tobacco.save()
     return redirect('/goorm/' + str(update_tobacco.id))
 
+@login_required
 def delete(request, tobacco_id):
-    delete_t= Tobacco.objects.get(id = tobacco_id)
-    delete_t.delete()
-    return redirect('goorm:goormlist')
+    if request.user.username == 'admin':
+        delete_t= Tobacco.objects.get(id = tobacco_id)
+        delete_t.delete()
+        return redirect('goorm:goormlist')
+    else:
+        err = '권한이 없습니다.'
+        return render(request, 'accounts/error.html', {'err':err} )
 
 def comment_delete(request, comment_id) : 
     delete_comment = Comment.objects.get(id=comment_id)
