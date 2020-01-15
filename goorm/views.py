@@ -145,14 +145,10 @@ def comment_delete(request, comment_id) :
     delete_comment.delete()
     return redirect('/goorm/' + str(delete_comment.tobacco.id))
 
-def comment_edit(request, comment_id) :
-    edit_comment = Comment.objects.get(id=comment_id)
-    return render(request, 'goorm/comment_edit.html', {'comment' : edit_comment})
-
 def comment_update(request, comment_id):
     update_comment = Comment.objects.get(id=comment_id)
-    update_comment.contents = request.POST['comment_text']
-    update_comment.score = request.POST['comment_score']
+    update_comment.contents = request.POST['edit_text']
+    update_comment.score = request.POST['edit_score']
     update_comment.save()
     return redirect('/goorm/' + str(update_comment.tobacco.id))
     

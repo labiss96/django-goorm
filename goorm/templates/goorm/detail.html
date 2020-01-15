@@ -47,9 +47,30 @@
     <form action="{% url 'goorm:comment_delete' comment.id %}">
         <button class="btn btn-outline-secondary" type="submit">Delete</button>
     </form>
-    <form action="{% url 'goorm:comment_edit' comment.id %}">
-        <button class="btn btn-outline-secondary" type="submit">Edit</button>
-    </form>
+
+    <details>    
+        <summary>
+            Edit
+        </summary>
+        <form action="{% url 'goorm:comment_update' comment.id %}" method="post" >
+            {% csrf_token %} 
+            
+            <label for="edit_text">contents : </label>
+            <input type="text" name="edit_text" value="{{comment.contents}}" >                  
+
+            <input type="text" name="score_val" value="{{comment.score}}" style="display: none;">
+
+            <label for="edit_score">Score : </label>
+            <input type="radio" name="edit_score" value="1">1
+            <input type="radio" name="edit_score" value="2">2
+            <input type="radio" name="edit_score" value="3">3
+            <input type="radio" name="edit_score" value="4">4
+            <input type="radio" name="edit_score" value="5">5
+        
+            <input type="submit" class="btn btn-primary" value="Edit">
+            
+        </form>
+    </details>
     {% endif %}
     <hr>
     {% endfor %}
@@ -78,6 +99,15 @@
     {% endif %}
 
     <!-- 로그인 된 상태에서 로그인이 되어있으면 댓글창이 나옴 -->
-
 </div>
+
+<script>
+    $(document).ready(function () {
+        //score 데이터를 가져와 radio의 초기값을 설정함.
+        var score = $('input[name="score_val"]').val();
+        $('input[name="edit_score"]').val([score]);
+      });
+
+</script>
+
 {% endblock %}
