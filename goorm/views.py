@@ -160,7 +160,8 @@ def comment_update(request, comment_id):
 
 def brand_filter(request , brand_id) :
    brand_tobacco=Tobacco.objects.filter(brand = brand_id)
-   return render(request, 'goorm/brand_detail.html' ,{'tobaccos':brand_tobacco})    
+   brand = Brand.objects.get(pk=brand_id)
+   return render(request, 'goorm/brand_detail.html' ,{'tobaccos':brand_tobacco, 'brand': brand})    
 
 def search(request):
     if request.GET.get('q'):
