@@ -33,7 +33,7 @@
           <!--담배기능 리스트 작업-->
 
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'goorm:goormlist' %}">Goorm List
+            <a class="nav-link " href="{% url 'goorm:goormlist' %}">Goorm List
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -45,40 +45,30 @@
             </a>
           </li>
           {% endif %}
-          
+
           <!--담배기능 리스트 작업-->
 
 
           <!-- 네비바 검색기능 -->
-          <form class="form-inline" action="{% url 'goorm:search'%}" method="get">
-            <div class="input-group">
-                <select name="fd_name" id="" class="form-control">
-                    <option value="brand">brand</option>
-                    <option value="name">name</option>
-                </select>
-                <input type="text" class="form-control" name='q'>
-                <button class="btn btn-secondary" type="submit">Search</button>
-            </div>
-        </form>
-          <!-- 네비바 검색기능 -->
+
 
           <!--로그인 기능 네브바-->
           {% if not user.is_authenticated %}
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'accounts:login' %}">Login
+            <a class="nav-link" href="{% url 'accounts:login' %}">로그인
               <span class="sr-only">(current)</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a>
+            <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
           </li>
           {% else %}
 
           <li class="nav-item">
             <form id="logout" method="POST" action="{% url 'accounts:logout' %}" class="nav-link">
               {% csrf_token %}
-              <input type="submit" value="Logout">
+              <input type="submit" class="btn btn-secondary" value="Logout">
             </form>
           </li>
 
@@ -127,13 +117,13 @@
   <script src="{% static './vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static './vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script>
-    $(document).ready(function() {
-    // executes when HTML-Document is loaded and DOM is ready
-    // console.log("document is ready");
+    $(document).ready(function () {
+      // executes when HTML-Document is loaded and DOM is ready
+      // console.log("document is ready");
 
-    $(".card_hover").hover( function() {
-        $(this).addClass('shadow').css('cursor', 'pointer'); 
-      }, function() {
+      $(".card_hover").hover(function () {
+        $(this).addClass('shadow').css('cursor', 'pointer');
+      }, function () {
         $(this).removeClass('shadow');
       });
     });
@@ -148,6 +138,7 @@
     padding-top: 80px;
     box-sizing: border-box;
   }
+
   .card:hover {
     text-decoration: none;
   }

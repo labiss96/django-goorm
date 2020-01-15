@@ -311,11 +311,13 @@
     <div class="jumbotron text-center">
         <h1>구름과자
             <br>프로젝트</h1>
-        <p>세계최강 담배커뮤니티 구름과자에 오신걸 환영합니다</p>
-        <br>
-        당신의 계정을 생성하고 커뮤니티를 즐겨보세요
     </div>
-    <br>
+    <div style="text-align: center;">
+        <h2> <strong>세계최강 담배커뮤니티 구름과자에 오신걸 환영합니다</strong></h2>
+        <p>당신의 계정을 생성하고 커뮤니티를 즐겨보세요</p>
+    </div>
+
+    <!-- 회원가입 시작해주는 부분 -->
     <div class="container" style="text-align: center;">
         <form method="POST" action="{% url 'accounts:signup' %}" enctype="multipart/form-data">
             {% csrf_token %}

@@ -16,13 +16,23 @@
     <h3>점수 : {{tobacco.score}} </h3>
     <h3>맨솔여부 : {{tobacco.isMenthol}} </h3>
 
+<!-- <div class="nav-scroller py-3 mb-1">
+      <nav class="nav d-flex justify-content-center">
+    <a class="p-2 text-muted" href="Page1.html">MAN</a>
+    <a class="p-2 text-muted" href="page2.html">WOMAN</a>
+    <a class="p-2 text-muted" href="page3.html">BAGS</a>
+    <a class="p-2 text-muted" href="page4.html">ACC</a>
+    <a class="p-2 text-muted" href="page5.html">SALE</a>
+    <div class="dropdown"> -->
 
-    <a href="{% url 'goorm:goormlist' %}">list</a>
+        <br>
+    <div>
+        <a class="p-2 text-muted" href="{% url 'goorm:goormlist' %}"> <strong>List</strong></a>
 
-    <a href="{% url 'goorm:delete' tobacco.id %}">delete</a>
+       <a class="p-2 text-muted"  href="{% url 'goorm:delete' tobacco.id %}"><strong>Delete</strong></a> 
 
-    <a href="{% url 'goorm:edit' tobacco.id %}">edit</a>
-
+       <a href="{% url 'goorm:edit' tobacco.id %}" class="p-2 text-muted" ><strong>Edit</strong></a> 
+    </div>
     <br>
     <hr>
     <!-- 댓글기능 페이지 -->
@@ -46,25 +56,25 @@
 
     <!-- 만약에 로그인이 들어가있으면 댓글 작성창이 나오는거임  -->
     {% if user.is_authenticated  %}
-        {% if cmt_flag == False %}
-        <form action="" method="POST">
-            {% csrf_token %}
-            <img src="{{ request.user.profile_img.url }}" alt="" style="width: 35px; height: 35px; border-radius: 40%;">
-            <span style="padding: 5%;">{{request.user.username}}</span>
+    {% if cmt_flag == False %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <img src="{{ request.user.profile_img.url }}" alt="" style="width: 35px; height: 35px; border-radius: 40%;">
+        <span style="padding: 5%;">{{request.user.username}}</span>
 
-            <p>Comment <br> <input type="text" name="comment_text" placeholder="댓글을 입력하세요"></p>
-            Score <br>
-            <input type="radio" name="comment_score" value="1">1
-            <input type="radio" name="comment_score" value="2">2
-            <input type="radio" name="comment_score" value="3">3
-            <input type="radio" name="comment_score" value="4">4
-            <input type="radio" name="comment_score" value="5">5
-            <br><br>
-            <input class="btn btn-outline-primary" type="submit">
-        </form>
-        {% else %}
-            이미 리뷰를 작성하셨습니다.
-        {% endif %}
+        <p>Comment <br> <input type="text" name="comment_text" placeholder="댓글을 입력하세요"></p>
+        Score <br>
+        <input type="radio" name="comment_score" value="1">1
+        <input type="radio" name="comment_score" value="2">2
+        <input type="radio" name="comment_score" value="3">3
+        <input type="radio" name="comment_score" value="4">4
+        <input type="radio" name="comment_score" value="5">5
+        <br><br>
+        <input class="btn btn-outline-secondary" type="submit">
+    </form>
+    {% else %}
+    이미 리뷰를 작성하셨습니다.
+    {% endif %}
     {% endif %}
 
     <!-- 로그인 된 상태에서 로그인이 되어있으면 댓글창이 나옴 -->
