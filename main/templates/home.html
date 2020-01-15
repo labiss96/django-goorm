@@ -11,7 +11,7 @@
         <h1 class="my-4">Goorm</h1>
         
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">
           Buy Goorm
         </button>
 
@@ -19,8 +19,8 @@
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Buy Goorm</h5>
+              <div class="modal-header" class="btn btn-Dark">
+                <h5 class="modal-title" id="exampleModalCenterTitle" class="btn btn-Dark">Buy Goorm</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -58,10 +58,10 @@
         <!-- End Modal -->
 
         <br><br>
-        
+        <!-- 옆에 브랜드 나오는 창임 -->
         <div class="list-group">
           {% for brand in brands %}
-          <a href="{% url 'goorm:brand_filter' brand.id %}" class="list-group-item">{{brand}}</a>
+          <a class="p-2 text-muted" href="{% url 'goorm:brand_filter' brand.id %}" class="list-group-item" >{{brand}}</a>
           {% endfor %}
         </div>
 
@@ -96,15 +96,15 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-
+<!-- 여기는 이제 카드 형식으로 담배 보여주는곳임 -->
         <div class="row">
           {% for grm in best_grms %}
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card card_hover h-100">
                 <a href="#" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img class="card-img-top" src="{{grm.img.url}}" alt=""></a>
-                <div class="card-body">
+                <div class="card-body"  >
                   <h4 class="card-title">
-                    <a class="stretched-link" href="{% url 'goorm:detail' grm.id %}">{{grm.brand}} {{grm.name}}</a>
+                    <a class="text-muted" class="stretched-link" href="{% url 'goorm:detail' grm.id %}" >{{grm.brand}} {{grm.name}}</a>
                   </h4>
                   <h5>{{grm.price}}</h5>
                   <p class="card-text"></p>
