@@ -84,3 +84,5 @@ def update(request, profile_name):
 def error(request):
     err = '로그인이 필요한 작업입니다!'
     return render(request, 'accounts/error.html', {'err':err})
+
+
