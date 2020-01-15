@@ -26,7 +26,7 @@
     <br>
     <hr>
     <!-- 댓글기능 페이지 -->
-    <h5>Comment</h5>
+    <h5>Review</h5>
     <br>
     <!-- 여기에 이미 작성 된 댓글들이 있음 -->
     {% for comment in comments.all %}
@@ -36,6 +36,9 @@
     {% if request.user == comment.writer %}
     <form action="{% url 'goorm:comment_delete' comment.id %}">
         <button class="btn btn-outline-secondary" type="submit">Delete</button>
+    </form>
+    <form action="{% url 'goorm:comment_edit' comment.id %}">
+        <button class="btn btn-outline-secondary" type="submit">Edit</button>
     </form>
     {% endif %}
     <hr>
