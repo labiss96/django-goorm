@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
+<br>
+<br>
+<p class="card-text display-4" style="font-family: 'Eoe_Zno_B';">{{brand}}</p>
+
 
 <div class="row">
 
     {%for tobacco in tobaccos%}
 
-
-    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
             <a href="#"><img class="card-img-top" src="{{tobacco.img.url}}"
-                    style='width:350px; height: 200px; display:block; margin:10px; text-align: center;' alt=""></a>
+                    style='height: auto; display:block; padding:10px; text-align: center;' alt=""></a>
             <div class="card-body">
                 <h4 class="card-title">
                     <a href="{% url 'goorm:detail' tobacco.id %}" class="p-2 text-muted">
@@ -28,6 +31,9 @@
 
 </div>
 
+<style>
+@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
+</style>
 
 
 
