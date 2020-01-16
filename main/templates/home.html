@@ -75,6 +75,7 @@
 
           <div class="col-md-4">
             <a class="nav-link" href="{% url 'goorm:brand_filter' brand.id %}">
+
               <div style="text-align: center;">
                 <img src="{{brand.brd_img.url}}" alt=""
                   style="width: 35px; height: 35px; border-radius: 40%; vertical-align: top;">
@@ -122,31 +123,28 @@
       </div>
 
       <!-- 여기는 이제 카드 형식으로 담배 보여주는곳임 -->
-      <hr>
-      <p>
-        <h1>Best Goorm</h1>
-      </p>
 
-      <div class="row">
-        {% for grm in best_grms %}
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card card_hover h-100">
-            <a href="#" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img
-                class="card-img-top" src="{{grm.img.url}}" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a class="stretched-link text-muted" href="{% url 'goorm:detail' grm.id %}">{{grm.brand}}
-                  {{grm.name}}</a>
-              </h4>
-              <h5>{{grm.price}}</h5>
-              <p class="card-text"></p>
-            </div>
-            <div class="card-footer" style="text-align: center;">
-              <small class="text-muted">{{grm.star}}</small>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
+        <hr>
+        <p><h1>Best Goorm</h1></p>
+      
+        <div class="row" style="text-align: center;">
+          {% for grm in best_grms %}
+            <div class="col-lg-3 col-6 mb-4">
+              <div class="card card_hover h-100">
+                <a href="#" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img class="card-img-top" src="{{grm.img.url}}" alt=""></a>
+                <div class="card-body"  >
+                  <h4 class="card-title">
+                    <a class="stretched-link text-muted" href="{% url 'goorm:detail' grm.id %}" >{{grm.brand}} {{grm.name}}</a>
+                  </h4>
+                  <h6><span class="star">&#x20a9;</span> {{grm.price}}</h6>
+                  <p class="card-text"></p>
+                </div>
+                <div class="card-footer h-auto">
+                  <small class="text-muted star">{{grm.star}}</small>
+                </div>
+              </div>
+            </div>  
+          {% endfor %}
 
 
 

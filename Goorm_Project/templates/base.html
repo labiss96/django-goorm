@@ -64,7 +64,8 @@
 
 
           <!--로그인 기능 네브바-->
-          {% if not user.is_authenticated %}
+           
+          {% if user.is_anonymous %}
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'accounts:login' %}">로그인
               <span class="sr-only">(current)</span>
@@ -74,7 +75,8 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
           </li>
-          {% else %}
+
+          {% elif user.is_authenticated  %}
 
           <li class="nav-item">
             <form id="logout" method="POST" action="{% url 'accounts:logout' %}" class="nav-link">
@@ -100,7 +102,7 @@
                 <option value="name">name</option>
               </select>
               <br>
-              <input type="text" class="form-control" name='q'>
+              <input type="text" class="form-control" name='q' required='required'>
               <button class="btn btn-secondary" type="submit">Search</button>
             </div>
           </form>
@@ -164,5 +166,9 @@
 
   .card:hover {
     text-decoration: none;
+  }
+  
+  .star {
+    font-family: Georgia !important;
   }
 </style>
