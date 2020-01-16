@@ -11,7 +11,8 @@
       <h1 class="my-4">Goorm</h1>
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter"
+        style="background-color: #6495ED;">
         Buy Goorm
       </button>
 
@@ -67,22 +68,22 @@
           {% endfor %}
         </div>   이거는 원본이고 -->
 
-        <!-- 이거는 카드 형식 수정본인데 이미지가 잘못나올꺼임 -->
+      <!-- 이거는 카드 형식 수정본인데 이미지가 잘못나올꺼임 -->
       <div class="card mb-3" style="max-width: 540px;">
         {% for brand in brands %}
-        <div class="row no-gutters">
-  
+        <div class="row no-gutters" style="text-align: center;">
+
           <div class="col-md-4">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{% url 'goorm:brand_filter' brand.id %}">
+
               <div style="text-align: center;">
-                <img src="#" alt=""
+                <img src="{{brand.brd_img.url}}" alt=""
                   style="width: 35px; height: 35px; border-radius: 40%; vertical-align: top;">
               </div>
-            </a>          </div>
+            </a> </div>
           <div class="col-md-8">
             <div class="card-body">
-              <a class="p-2 text-muted" href="{% url 'goorm:brand_filter' brand.id %}"
-                class="list-group-item">{{brand}}</a>
+              <a class="p-2 text-muted list-group-item" href="{% url 'goorm:brand_filter' brand.id %}">{{brand}}</a>
             </div>
           </div>
         </div>
@@ -122,6 +123,7 @@
       </div>
 
       <!-- 여기는 이제 카드 형식으로 담배 보여주는곳임 -->
+
         <hr>
         <p><h1>Best Goorm</h1></p>
       
@@ -144,18 +146,18 @@
             </div>  
           {% endfor %}
 
-          
 
-        </div>
 
       </div>
-      <!-- /.row -->
 
     </div>
-    <!-- /.col-lg-9 -->
+    <!-- /.row -->
 
   </div>
-  <!-- /.row -->
+  <!-- /.col-lg-9 -->
+
+</div>
+<!-- /.row -->
 
 </div>
 <!-- /.container -->
