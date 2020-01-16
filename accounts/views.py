@@ -54,13 +54,14 @@ def logout(request):
 
 def mypage(request, profile_name):
     mypage_info = Profile.objects.get(username=profile_name)
-    log = Buying_Log.objects.filter(buyer = mypage_info)
+    logs = Buying_Log.objects.filter(buyer = mypage_info)
     log_list = []
-    for b in log:
+    for b in logs:
        log_list.append(b)
     a = len(log_list)
     money = a*4500
-    return render(request,'accounts/mypage.html',{'mypage_info':mypage_info,'log':log_list,'money':money})
+    choices_date = [log.as_dict() for log in logs]
+    return render(request,'accounts/mypage.html',{'mypage_info':mypage_info,'log':log_list,'money':money,'date':choices_date})
 
 @login_required
 def edit(request, profile_name):
