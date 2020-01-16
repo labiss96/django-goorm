@@ -4,10 +4,11 @@
 <!--만약에 브랜드를 검색했을때-->
 {% if search_type == 'brand' %}
     <h1>브랜드 검색결과</h1>
-    
+
+<div class="row" style="text-align: center;">
     {%for brand in results%}
 
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-3 col-6 mb-4">
             <div class="card card_hover h-100">
             <a href="#" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img class="card-img-top" src="{{brand.brd_img.url}}" alt=""></a>
             <div class="card-body"  >
@@ -23,22 +24,21 @@
         </div> 
 
     {% endfor %}
+</div>
 
     <!-- 담배 이름을 검색했을때 -->
 {% else %}
 
     <h1>담배 검색결과</h1>
 
+<div class="row" style="text-align: center;">
     {%for tobacco in results%}
-
-    <br>
-
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-3 col-6 mb-4">
             <div class="card card_hover h-100">
             <a href="#" style="height: 100%; display: flex; justify-content:center; align-items:center;"><img class="card-img-top" src="{{tobacco.img.url}}" alt=""></a>
-            <div class="card-body"  >
+            <div class="card-body">
                 <h4 class="card-title">
-                <a class="stretched-link text-muted" href="{% url 'goorm:detail' tobacco.id %}" >{{tobacco.brand}} {{tobacco.name}}</a>
+                <a class="stretched-link text-muted" href="{% url 'goorm:detail' tobacco.id %}" >{{tobacco.brand}} <br> {{tobacco.name}}</a>
                 </h4>
                 <h5>{{tobacco.price}}</h5>
                 <p class="card-text"></p>
@@ -50,6 +50,7 @@
         </div> 
 
     {% endfor %}
+</div>
 
 {% endif %}
 
