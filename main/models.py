@@ -8,9 +8,12 @@ from goorm.models import *
 class Buying_Log(models.Model):
     buyer = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name= 'buyer')
     product = models.ForeignKey(Tobacco, on_delete = models.CASCADE, related_name= 'product') 
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField()
 
     def __str__(self) :
         return self.buyer.username 
+
+    def as_dict(self):
+        return {'date':str(self.date)}
 
     

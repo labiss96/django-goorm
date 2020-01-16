@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from goorm.models import Tobacco, Brand
+from django.utils import timezone
 from .models import Buying_Log
 # Create your views here.
 
@@ -35,6 +36,7 @@ def save_log(request):
     log = Buying_Log()
     log.buyer = request.user
     log.product = Tobacco.objects.get(id=request.POST['grmName'])
+    log.date = timezone.datetime.now()
     log.save()
     # print('정상적으로 구매되었음.')
     return redirect('home')
