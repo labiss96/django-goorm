@@ -123,6 +123,8 @@ def update(request, tobacco_id):
     update_tobacco.nicotine = request.POST['nicotine']
     update_tobacco.TAR = request.POST['TAR']
     update_tobacco.feel_of_hit = request.POST['feel_of_hit']
+    if request.FILES.get('tobacco_img'):
+        update_tobacco.img = request.FILES.get('tobacco_img')
     if request.POST['isMenthol'] == 'yes':
         update_tobacco.isMenthol = True
     else:
