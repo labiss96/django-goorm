@@ -1,22 +1,110 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
+
+
+
 <div class="container">
-    {% if tobacco.img %}
-    <img src="{{tobacco.img.url}}" style='width:200px; height: 200px; display:block; margin:10px; text-align: center;'>
-    {% endif %}
+    
+    <!-- 이거는 신버젼 입니다. - 이관형 -->
 
-    <h3>브랜드 : {{tobacco.brand.brd_name}}</h3>
-    <h3>이름 : {{tobacco.name}} </h3>
-    <h3>가격 : {{tobacco.price}} </h3>
-    <h3>출시일 : {{tobacco.rel_date}} </h3>
-    <h3>니코틴 : {{tobacco.nicotine}} </h3>
-    <h3>타르 : {{tobacco.TAR}} </h3>
-    <h3>타격감 : {{tobacco.feel_of_hit}} </h3>
-    <h3>점수 : {{tobacco.score}} </h3>
-    <h3>맨솔여부 : {{tobacco.isMenthol}} </h3>
+    <!--여기 부터   -->
+    <div class="row"  >
+        <div class="col-lg-2">
 
-<!-- <div class="nav-scroller py-3 mb-1">
+        </div>
+        <div class="col-lg-4">
+            {% if tobacco.img %}
+                <img src="{{tobacco.img.url}}" style='width:350px; height: 436px; display:block; margin:5px; text-align: center;'>
+            {% endif %}
+        </div>
+        <div class="col-lg-4">
+            <table class="table" style="text-align: right;">
+                <table class="table" style="width: 100%;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="action">브랜드</th>
+                            <th scope="row">{{tobacco.brand.brd_name}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">이름</th>
+                            <td>{{tobacco.name}}</td>
+                        </tr>
+                    </tbody>
+    
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="action">가격</th>
+                            <th scope="row">{{tobacco.price}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">출시일</th>
+                            <td>{{tobacco.rel_date}}</td>
+                        </tr>
+                    </tbody>
+    
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="action">니코틴</th>
+                            <th scope="row">{{tobacco.nicotine}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">타르</th>
+                            <td>{{tobacco.TAR}}</td>
+                        </tr>
+                    </tbody>
+    
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="action">타격감</th>
+                            <th scope="row">{{tobacco.feel_of_hit}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">점수</th>
+                            <td>{{tobacco.score}}</td>
+                        </tr>
+                    </tbody>
+    
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="action">맨솔여부</th>
+                            <th scope="row">{{tobacco.isMenthol}}</th>
+                        </tr>
+                    </thead>
+    
+                </table>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+
+        
+    </div>
+    <!--여기까지 이제 그거임 이걸 옴겨야됌  -->
+
+
+    <!-- 이거는 구버젼 입니다. - 이관형 -->
+
+    <!-- <h3>브랜드 : {{tobacco.brand.brd_name}}</h3>
+        <h3>이름 : {{tobacco.name}} </h3>
+        <h3>가격 : {{tobacco.price}} </h3>
+        <h3>출시일 : {{tobacco.rel_date}} </h3>
+        <h3>니코틴 : {{tobacco.nicotine}} </h3>
+        <h3>타르 : {{tobacco.TAR}} </h3>
+        <h3>타격감 : {{tobacco.feel_of_hit}} </h3>
+        <h3>점수 : {{tobacco.score}} </h3>
+        <h3>맨솔여부 : {{tobacco.isMenthol}} </h3> -->
+
+    <!-- <div class="nav-scroller py-3 mb-1">
       <nav class="nav d-flex justify-content-center">
     <a class="p-2 text-muted" href="Page1.html">MAN</a>
     <a class="p-2 text-muted" href="page2.html">WOMAN</a>
@@ -25,13 +113,13 @@
     <a class="p-2 text-muted" href="page5.html">SALE</a>
     <div class="dropdown"> -->
 
-        <br>
+    <br>
     <div>
         <a class="p-2 text-muted" href="{% url 'goorm:goormlist' %}"> <strong>List</strong></a>
 
-       <a class="p-2 text-muted"  href="{% url 'goorm:delete' tobacco.id %}"><strong>Delete</strong></a> 
+        <a class="p-2 text-muted" href="{% url 'goorm:delete' tobacco.id %}"><strong>Delete</strong></a>
 
-       <a href="{% url 'goorm:edit' tobacco.id %}" class="p-2 text-muted" ><strong>Edit</strong></a> 
+        <a href="{% url 'goorm:edit' tobacco.id %}" class="p-2 text-muted"><strong>Edit</strong></a>
     </div>
     <br>
     <hr>
@@ -48,15 +136,15 @@
         <button class="btn btn-outline-secondary" type="submit">Delete</button>
     </form>
 
-    <details>    
+    <details>
         <summary>
             Edit
         </summary>
-        <form action="{% url 'goorm:comment_update' comment.id %}" method="post" >
-            {% csrf_token %} 
-            
+        <form action="{% url 'goorm:comment_update' comment.id %}" method="post">
+            {% csrf_token %}
+
             <label for="edit_text">contents : </label>
-            <input type="text" name="edit_text" value="{{comment.contents}}" >                  
+            <input type="text" name="edit_text" value="{{comment.contents}}">
 
             <input type="text" name="score_val" value="{{comment.score}}" style="display: none;">
 
@@ -66,9 +154,9 @@
             <input type="radio" name="edit_score" value="3">3
             <input type="radio" name="edit_score" value="4">4
             <input type="radio" name="edit_score" value="5">5
-        
+
             <input type="submit" class="btn btn-primary" value="Edit">
-            
+
         </form>
     </details>
     {% endif %}
@@ -106,7 +194,7 @@
         //score 데이터를 가져와 radio의 초기값을 설정함.
         var score = $('input[name="score_val"]').val();
         $('input[name="edit_score"]').val([score]);
-      });
+    });
 
 </script>
 
