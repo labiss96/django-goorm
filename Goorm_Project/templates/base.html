@@ -21,7 +21,8 @@
       font-weight: normal;
       font-style: normal;
     }
-    body{
+
+    body {
       font-family: 'BMHANNAAir';
     }
   </style>
@@ -64,7 +65,7 @@
 
 
           <!--로그인 기능 네브바-->
-           
+
           {% if user.is_anonymous %}
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'accounts:login' %}">로그인
@@ -121,19 +122,11 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">제작자들  &copy;멋쟁이 사자처럼 국민대학교
-      <br>
-      전자공학부 : 이관형
-      <br>
-      소프트웨어 : 이정현
-      <br>
-      기계공학과 : 강승원
-      <br>
-      자동차공학과 : 박도은
-      <br>
-      기계공학과 : 엄윤정
-     </p>
-      
+      <p class="m-0 text-center text-white"> Copyright &copy; Project Goorm 2020 </p>
+
+      <p class="m-0 text-right text-white"> <a href="{% url 'accounts:developer' %}">Developer</a>></p>
+
+
     </div>
     <!-- /.container -->
   </footer>
@@ -167,7 +160,7 @@
   .card:hover {
     text-decoration: none;
   }
-  
+
   .star {
     font-family: Georgia !important;
   }
