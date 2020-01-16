@@ -7,88 +7,74 @@
   <div class="row">
 
     <div class="col-lg-3">
+      <div class="" style="text-align: center;">
+        <h2 class="my-4">Goorm Gwaja</h2>
 
-      <h1 class="my-4">Goorm</h1>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
+          Buy Goorm
+        </button>
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter"
-        style="background-color: #6495ED;">
-        Buy Goorm
-      </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header" class="btn btn-Dark">
+                <h5 class="modal-title" id="exampleModalCenterTitle" class="btn btn-Dark">Buy Goorm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header" class="btn btn-Dark">
-              <h5 class="modal-title" id="exampleModalCenterTitle" class="btn btn-Dark">Buy Goorm</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <form class="tagForm" id="tag-form" action="{% url 'save_log' %}" method="post"
+                enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <label for="brdName">Brand : </label>
+                  <select name="brdName" id="modal_brd">
+                    <option value="">--브랜드 선택--</option>
+                    {% for brd in brands %}
+                    <option value="{{brd.brd_name}}">{{brd.brd_name}}</option>
+                    {% endfor %}
+                  </select>
+
+                  {% for brd, grm in goorm_dic.items %}
+                  <select name="grmName" class="allGrm" id="{{brd}}">
+                    {% for goorm in grm %}
+                    <option value="{{goorm.id}}">{{goorm.name}}</option>
+                    {% endfor %}
+                  </select>
+                  {% endfor %}
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input id="tag-form-submit" type="submit" class="btn btn-info" value="Buy">
+                </div>
+              </form>
+
             </div>
-
-            <form class="tagForm" id="tag-form" action="{% url 'save_log' %}" method="post"
-              enctype="multipart/form-data">
-              {% csrf_token %}
-              <div class="modal-body">
-                <label for="brdName">Brand : </label>
-                <select name="brdName" id="modal_brd">
-                  <option value="">--브랜드 선택--</option>
-                  {% for brd in brands %}
-                  <option value="{{brd.brd_name}}">{{brd.brd_name}}</option>
-                  {% endfor %}
-                </select>
-
-                {% for brd, grm in goorm_dic.items %}
-                <select name="grmName" class="allGrm" id="{{brd}}">
-                  {% for goorm in grm %}
-                  <option value="{{goorm.id}}">{{goorm.name}}</option>
-                  {% endfor %}
-                </select>
-                {% endfor %}
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input id="tag-form-submit" type="submit" class="btn btn-primary" value="Buy">
-              </div>
-            </form>
-
           </div>
         </div>
+        <!-- End Modal -->
       </div>
-      <!-- End Modal -->
 
       <br><br>
-      <!-- 옆에 브랜드 나오는 창임
-        <div class="list-group">
-          {% for brand in brands %}
-          <a class="p-2 text-muted" href="{% url 'goorm:brand_filter' brand.id %}" class="list-group-item" >{{brand}}</a>
-          {% endfor %}
-        </div>   이거는 원본이고 -->
+      
+      <!-- Brand list -->
 
-      <!-- 이거는 카드 형식 수정본인데 이미지가 잘못나올꺼임 -->
-      <div class="card mb-3" style="max-width: 540px;">
+      <div class="list-group mb-3" style="max-width: 540px;">
+        <a href="#" class="list-group-item list-group-item-secondary list-group-item-action disabled" tabindex="-1" aria-disabled="true" style="text-align: center;"><h5><strong>Brands</strong></h5></a>
         {% for brand in brands %}
-        <div class="row no-gutters" style="text-align: center;">
-
-          <div class="col-md-4">
-            <a class="nav-link" href="{% url 'goorm:brand_filter' brand.id %}">
-
-              <div style="text-align: center;">
-                <img src="{{brand.brd_img.url}}" alt=""
+          <a href="{% url 'goorm:brand_filter' brand.id %}" class="list-group-item list-group-item-action" style="padding-left: 15%;">
+            <img src="{{brand.brd_img.url}}" alt=""
                   style="width: 35px; height: 35px; border-radius: 40%; vertical-align: top;">
-              </div>
-            </a> </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <a class="p-2 text-muted list-group-item" href="{% url 'goorm:brand_filter' brand.id %}">{{brand}}</a>
-            </div>
-          </div>
-        </div>
+            {{brand}}
+          </a>
         {% endfor %}
       </div>
+
 
     </div>
     <!-- /.col-lg-3 -->
