@@ -309,12 +309,12 @@
 <body>
     <!-- header -->
     <div class="jumbotron text-center">
-        <h1>구름과자
-            <br>프로젝트</h1>
+        <h1>GOORM GWAJA<br>PROJECT</h1>
     </div>
     <div style="text-align: center;">
         <h2> <strong>세계최강 담배커뮤니티 구름과자에 오신걸 환영합니다</strong></h2>
         <p>당신의 계정을 생성하고 커뮤니티를 즐겨보세요</p>
+        <br>
     </div>
 
     <!-- 회원가입 시작해주는 부분 -->
@@ -323,15 +323,14 @@
             {% csrf_token %}
             <input type="text" name="username" required="required" placeholder="Your id"><br>
             <input type="password" name="password1" required="required" placeholder="Your password"><br>
-            <input type="password" name="password2" required="required" placeholder="Certificate Your password"><br>
-
+            <input type="password" name="password2" required="required" placeholder="Confirm Your password"><br>
+            <hr>
             <!-- 성별부터 -->
             <div class="container" style="width: 50%;">
                 <div class="row">
                     <div class="col">
-                        <p><strong>성별</strong></p>
+                        <strong>성별</strong> <br> <br>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons" style="text-align: center;">
-
                             <label class="btn btn-secondary">
                                 <input type="radio" name="sex" required="required" value="남자" id="jb-radio-2"> 남자
                             </label>
@@ -350,72 +349,54 @@
             <!-- <input type="radio" name="sex" required="required" value="남자">남자
             <input type="radio" name="sex" required="required" value="여자">여자
             <br> -->
-
+            <hr>
             <!-- 흡연 시작년도 -->
+            <strong>흡연 시작년도</strong>
             <input type="month" style="text-align: center;" class="btn btn-Dark" name="start_year"
                 required="required"><br>
-
+            <hr>
             <!-- 프로필 사진: -->
 
             <!-- <input type="file" class="btn btn-file" name="profile_img" accept=".jpg, .gif, .jpeg, .png">
             <br><br> -->
             <!-- 커버이미지 들어오는 부분 (임시로 이미지를 넣어줬다)-->
-
+            <strong>프로필 사진</strong>
             <div class="form-group" style="margin: 8px 0 8px;">
-
                 <input id="file" class=" form-control" name="profile_img" accept=".jpg, .gif, .jpeg ,.png" value="파일선택"
                     disabled="disabled" style="width:50%; display: inline;">
-
                 <div class="fileRegiBtn btn-Dark">
-
                     <label for="myFileUp" class="btn btn-Dark">파일등록하기</label>
-
                     <input type="file" name="profile_img" accept=".jpg, .gif, .jpeg, .png" id="myFileUp">
-
                 </div>
-
             </div>
-
+            <hr>
             <!-- 회원가입 누르기 버튼 -->
-            <button type="submit" class="btn btn-Dark" style="width: 50%;">회원가입</a>
-
+            <button type="submit" class="btn btn-info" style="width: 20%;">회원가입</button>
+            <br>
+            <br>
         </form>
     </div>
 
     <!-- 스크립트 부분 가져온거임 -->
 
-    <script>function readURL(input) {
-
-            console.log("버튼클릭함1");
-
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-
-                    $('#cover').attr('src', e.target.result);        //cover src로 붙여지고
-
-                    $('#fileName').val(input.files[0].name);    //파일선택 form으로 파일명이 들어온다
-
-                }
-
-                reader.readAsDataURL(input.files[0]);
-
+<script>
+    function readURL(input) {
+        // console.log("버튼클릭함1");
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#cover').attr('src', e.target.result);        //cover src로 붙여지고
+                $('#fileName').val(input.files[0].name);    //파일선택 form으로 파일명이 들어온다
             }
-
+            reader.readAsDataURL(input.files[0]);
         }
+    }
 
-
-
-        $("#myFileUp").change(function () {
-
-            readURL(this);
-
-            console.log("이미지 바뀜?");
-
-        });</script>
-
+    $("#myFileUp").change(function () {
+        readURL(this);
+        // console.log("이미지 바뀜?");
+    });
+</script>
 </body>
 
 </html>

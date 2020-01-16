@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    <h1 style="color: red;">ERROR!</h1>
-    <br>
-    <h2>{{err}}</h2>
-    <br>
-    <h3><a href="{% url 'accounts:login' %}">Login</a></h3>
-    <br><br>
+    <div style="text-align: center;"> 
+        <br>
+        <h1 style="color: red;">ERROR!</h1>
+        
+        <h2>{{err}}</h2>
+        {% if err != '권한이 없습니다.' %}
+        <br>
+        <h3><a href="{% url 'accounts:login' %}">Login</a></h3>
+        {% else %}
+        <span class="text-muted"> Admin으로 접속 바랍니다. </span>
+        
+        {% endif %}
+        <br><br>
+    </div>
 
 
 {% endblock %}
