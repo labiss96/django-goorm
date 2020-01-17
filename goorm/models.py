@@ -37,6 +37,6 @@ class Comment(models.Model) :
 
 
     def __str__(self) :
-        return self.writer + "의 댓글"
+        return self.writer.username
 
 # Create your models here.
