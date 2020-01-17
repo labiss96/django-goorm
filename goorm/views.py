@@ -93,7 +93,7 @@ def create(request):
     new_tobacco.brand = selected_brand
     new_tobacco.name = request.POST['name']
     new_tobacco.price = request.POST['price']
-    new_tobacco.rel_date = request.POST['rel_date']
+    # new_tobacco.rel_date = request.POST['rel_date']
     new_tobacco.nicotine = request.POST['nicotine']
     new_tobacco.TAR = request.POST['TAR']
     new_tobacco.feel_of_hit = request.POST['feel_of_hit']
@@ -119,7 +119,7 @@ def update(request, tobacco_id):
     update_tobacco = Tobacco.objects.get(id=tobacco_id)
     update_tobacco.name = request.POST['name']
     update_tobacco.price = request.POST['price']
-    update_tobacco.rel_date = request.POST['rel_date']
+    # update_tobacco.rel_date = request.POST['rel_date']
     update_tobacco.nicotine = request.POST['nicotine']
     update_tobacco.TAR = request.POST['TAR']
     update_tobacco.feel_of_hit = request.POST['feel_of_hit']
