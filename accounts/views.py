@@ -1,8 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
-from datetime import datetime
-from django.utils.dateformat import DateFormat
+from django.utils import timezone
 from .models import Profile
 from main.models import Buying_Log
 
@@ -59,9 +58,25 @@ def mypage(request, profile_name):
     for b in logs:
        log_list.append(b)
     a = len(log_list)
-    money = a*4500
-    choices_date = [log.as_dict() for log in logs]
-    return render(request,'accounts/mypage.html',{'mypage_info':mypage_info,'log':log_list,'money':money,'date':choices_date})
+    money = a*4500 #총 금액
+    choices_date = [log.as_dict() for log in logs] # date 값 json으로 보내기
+    #이번달 산 담배들
+    count = 0
+    pick_date = [str(log.date) for log in logs]
+    today = timezone.datetime.now()
+    str_today = str(today)
+    spl_today = str_today.split('-')
+    to_month = int(spl_today[1])
+    for pick in pick_date:
+        spl = pick.split('-')
+        sibal = int(spl[1])
+        if to_month == sibal:
+            count = count+1
+    month_buy =count*4500
+    #이번달 평균
+    average = (count*20)/30
+
+    return render(request,'accounts/mypage.html',{'mypage_info':mypage_info,'log':log_list,'money':money,'date':choices_date,'month_buy':month_buy,'average':average})
 
 @login_required
 def edit(request, profile_name):
