@@ -76,7 +76,11 @@ def mypage(request, profile_name):
     #이번달 평균
     average = (count*20)/30
 
-    return render(request,'accounts/mypage.html',{'mypage_info':mypage_info,'log':log_list,'money':money,'date':choices_date,'month_buy':month_buy,'average':average})
+    my_review=Comment.objects.filter(writer=mypage_info)
+
+
+    return render(request,'accounts/mypage.html',{'mypage_info':mypage_info,'log':log_list,'money':money,'date':choices_date,'month_buy':month_buy,'average':average
+    ,'my_review':my_review})
 
 
 @login_required
