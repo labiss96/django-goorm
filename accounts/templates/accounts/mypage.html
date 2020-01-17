@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <!-- 달력스크립트 -->
 <style type="text/css">
     td {
@@ -133,14 +132,16 @@
    
 </script>
 
+<div class="container">
+    
 
 
 <!-- 로우 하나에 마이페이지랑 달력이랑 묵음 -->
 <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-2">
 
     </div>
-    <div class="col-lg-3" style="text-align: center;">
+    <div class="col-lg-4" style="text-align: center;">
         <p><img style="width: 13.5rem; border-radius: 25%;" src="{{ mypage_info.profile_img.url }}"></p>
         <p>ID : {{ mypage_info.username }}</p>
         <p>성별 : {{mypage_info.sex }}</p>
@@ -150,7 +151,7 @@
         </p>
     </div>
 
-    <div class="col-lg-3">
+    <div class="col-lg-4">
         <br>
         <!-- <div class="card">
             내가 평가한 담배 리스트 :
@@ -179,20 +180,12 @@
 
 </div>
 
-<div class="p-2 text-muted" style="text-align: center;">
-    <h1> 당신은 지금까지 담배에 <strong>{{money}}</strong>원을 쓰셨습니다. </h1>
-    <h1> 당신은 이번 한달동안 담배에 <strong>{{month_buy}}</strong>원을 쓰셨습니다. </h1>
-    <h1> 당신은 이번달 하루 평균 <strong>{{average}}</strong>개피의 담배를 피셨습니다. </h1>
-</div>
-
-
-
-
-
+<hr>
+<br>
 
 <!-- 달력시작 -->
 
-<h3 align="center">★Goorm Calender★</h3>
+<h2 align="center">★Goorm Calender★</h2>
 <table id="calendar" border="3" align="center" style="border-color:#929292; ">
     <tr>
         <!-- label은 마우스로 클릭을 편하게 해줌 -->
@@ -220,6 +213,14 @@
 <br><br>
 <!-- 달력 끝 -->
 
+<div class="p-2 text-muted" style="text-align: center;">
+    <h2> 당신은 지금까지 담배에 <strong>{{money}}</strong>원을 쓰셨습니다. </h2>
+    <h2> 당신은 이번 한달동안 담배에 <strong>{{month_buy}}</strong>원을 쓰셨습니다. </h2>
+    <h2> 당신은 이번달 하루 평균 <strong>{{average}}</strong>개피의 담배를 피셨습니다. </h2>
+</div>
+<br>
+
+</div>
 
 <script language="javascript" type="text/javascript">
     buildCalendar();//
