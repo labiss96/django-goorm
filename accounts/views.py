@@ -4,7 +4,7 @@ from django.contrib import auth
 from django.utils import timezone
 from .models import Profile
 from main.models import Buying_Log
-
+from goorm.models import Comment
 # Create your views here
 
 def signup(request):
@@ -77,6 +77,7 @@ def mypage(request, profile_name):
     average = (count*20)/30
 
     return render(request,'accounts/mypage.html',{'mypage_info':mypage_info,'log':log_list,'money':money,'date':choices_date,'month_buy':month_buy,'average':average})
+
 
 @login_required
 def edit(request, profile_name):

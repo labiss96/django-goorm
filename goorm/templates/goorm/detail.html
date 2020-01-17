@@ -1,27 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-
-
-
 <div class="container">
-    
+
     <!-- 이거는 신버젼 입니다. - 이관형 -->
 
     <!--여기 부터   -->
-    <div class="row"  >
+    <div class="row">
         <div class="col-lg-2">
 
         </div>
         <div class="col-lg-4">
             {% if tobacco.img %}
-                <img src="{{tobacco.img.url}}" style='width:350px; height: 436px; display:block; margin:5px; text-align: center;'>
+            <img src="{{tobacco.img.url}}"
+                style='width:350px; height: 400px; display:block; margin:5px; text-align: center;'>
             {% endif %}
         </div>
-        <div class="col-lg-4">
-            <table class="table" style="text-align: right;">
-                <table class="table" style="width: 100%;">
+        <div class="col-lg-4" style="height: 436px;">
+            <table class="table" style="text-align: right; ">
+                <table class="table" style="width: 100%;  ">
                     <thead class="thead-light">
                         <tr>
                             <th scope="action">브랜드</th>
@@ -34,7 +31,7 @@
                             <td>{{tobacco.name}}</td>
                         </tr>
                     </tbody>
-    
+
                     <thead class="thead-light">
                         <tr>
                             <th scope="action">가격</th>
@@ -43,51 +40,46 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">출시일</th>
-                            <td>{{tobacco.rel_date}}</td>
+                            <th scope="row">니코틴</th>
+                            <td>{{tobacco.nicotine}}</td>
                         </tr>
                     </tbody>
-    
+
                     <thead class="thead-light">
                         <tr>
-                            <th scope="action">니코틴</th>
-                            <th scope="row">{{tobacco.nicotine}}</th>
+                            <th scope="action">타르</th>
+                            <th scope="row">{{tobacco.TAR}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">타르</th>
-                            <td>{{tobacco.TAR}}</td>
+                            <th scope="row">타격감</th>
+                            <td>{{tobacco.feel_of_hit}}</td>
                         </tr>
                     </tbody>
-    
+
                     <thead class="thead-light">
                         <tr>
-                            <th scope="action">타격감</th>
-                            <th scope="row">{{tobacco.feel_of_hit}}</th>
+                            <th scope="action">점수</th>
+                            <th scope="row">{{tobacco.score}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">점수</th>
-                            <td>{{tobacco.score}}</td>
+                            <th scope="row">맨솔여부</th>
+                            <td>{{tobacco.isMenthol}}</td>
                         </tr>
                     </tbody>
-    
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="action">맨솔여부</th>
-                            <th scope="row">{{tobacco.isMenthol}}</th>
-                        </tr>
-                    </thead>
-    
+
+
+
                 </table>
         </div>
         <div class="col-lg-2">
 
         </div>
 
-        
+
     </div>
     <!--여기까지 이제 그거임 이걸 옴겨야됌  -->
 
@@ -179,7 +171,7 @@
         <input type="radio" name="comment_score" value="4">4
         <input type="radio" name="comment_score" value="5">5
         <br><br>
-        <input class="btn btn-outline-secondary" type="submit">
+        <input class="btn btn-outline-secondary" type="submit" name="">
     </form>
     {% else %}
     이미 리뷰를 작성하셨습니다.
