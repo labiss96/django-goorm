@@ -158,13 +158,12 @@
             <a href="#"><img src="{{tmp.tobacco.img.url}}" alt=""
                     style="width: 35px; height: 35px; border-radius: 40%; vertical-align: top;">{{tmp.tobacco}}
                 ></a>
-
             {% endfor %}
         </div> -->
         <div class="list-group mb-3" style="max-width: 540px;">
             <a href="#" class="list-group-item list-group-item-secondary list-group-item-action disabled" tabindex="-1"
                 aria-disabled="true" style="text-align: center;">
-                <h5><strong>내가 평가한 리스트</strong></h5>
+                <h5><strong>내가 평가한 담배들</strong></h5>
             </a>
             {% for tmp in my_review %}
             <a href="{% url 'goorm:detail' tmp.tobacco.id %}" class="list-group-item list-group-item-action" style="padding-left: 15%;">
