@@ -118,10 +118,13 @@
 
             }
         }
+
     }
+    // 여기까지 달력이 였습니다.
+   
 </script>
 
-<!-- 달력 스크립트 -->
+
 
 <!-- 로우 하나에 마이페이지랑 달력이랑 묵음 -->
 <div class="row">
@@ -169,16 +172,11 @@
 
 </div>
 
-
-<div class="p-2 text-muted">
-    구입한 담배 리스트 :
-    {% for dam in log%}
-    {{dam.product}} {{dam.date}}
-    {% endfor %}
-    당신은 지금까지 담배에 <strong>{{money}}</strong>원을 쓰셨습니다.
+<div class="p-2 text-muted" style="text-align: center;">
+    <h1> 당신은 지금까지 담배에 <strong>{{money}}</strong>원을 쓰셨습니다. </h1>
+    <h1> 당신은 이번 한달동안 담배에 <strong>{{month_buy}}</strong>원을 쓰셨습니다. </h1>
+    <h1> 당신은 이번달 하루 평균 <strong>{{average}}</strong>개피의 담배를 피셨습니다. </h1>
 </div>
-
-
 
 
 
