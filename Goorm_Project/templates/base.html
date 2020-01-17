@@ -44,15 +44,15 @@
 
           <!--담배기능 리스트 작업-->
 
-          <li class="nav-item active">
+          <li class="nav-item active" style="text-align: center;" >
             <a class="nav-link " href="{% url 'goorm:goormlist' %}">Goorm List
               <span class="sr-only">(current)</span>
             </a>
           </li>
 
           {% if request.user.username == 'admin' %}
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'goorm:new' %}">Add Goorm
+          <li class="nav-item active" >
+            <a class="nav-link" href="{% url 'goorm:new' %}" >Add Goorm
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -80,7 +80,7 @@
           {% elif user.is_authenticated  %}
 
           <li class="nav-item">
-            <form id="logout" method="POST" action="{% url 'accounts:logout' %}" class="nav-link">
+            <form id="logout" method="POST" action="{% url 'accounts:logout' %}" class="nav-link" style="text-align: center;">
               {% csrf_token %}
               <input type="submit" class="btn btn-secondary" value="Logout">
             </form>
