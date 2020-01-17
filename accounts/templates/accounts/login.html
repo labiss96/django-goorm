@@ -1,20 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap 4</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
   <style>
     input[type=password] {
 
@@ -235,35 +221,17 @@
     }
   </style>
 
-  <title> 구름과자 로그인페이지 </title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- CSS -->
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <!-- JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-
-</head>
-
-<body>
-
   <br>
   <br>
   <!-- header -->
   <div class="jumbotron text-center">
-    <h1>구름과자 <br>프로젝트</h1>
-
+    <h1>GOORM GWAJA<br>PROJECT</h1>
   </div>
   <div style="text-align: center;">
-    <p> <strong>세계최강 담배커뮤니티 구름과자에 오신걸 환영합니다</strong></p>
-    <p>당신의 계정을 생성하고 커뮤니티를 즐겨보세요</p>
-  </div>
-
-  <br>
+    <h2> <strong>세계최강 담배커뮤니티 구름과자에 오신걸 환영합니다</strong></h2>
+    <br>
+    <h1 class="text-muted">LOGIN</h1>
+</div>
 
   <!-- 로그인 해놓기  -->
   <div style="text-align: center;">
@@ -272,17 +240,13 @@
       <input type="text" name="username" required="required" placeholder="Your ID"><br>
 
       <input type="password" name="password" required="required" placeholder="Your password"><br>
-
-      <input type="submit" class="btn btn-Dark" style="width: 50%;" value="Sign in"><br>
       <br>
-      <a href="{% url 'accounts:signup' %}" class="btn btn-Dark" style="width: 50%;">회원가입</a>
+      <input type="submit" class="btn btn-info" style="width: 20%;" value="Login"><br>
+      <br>
+      <a href="{% url 'accounts:signup' %}" class="btn btn-Dark" style="width: 20%;">회원가입</a>
 
     </form>
   </div>
-</body>
-
-</html>
-
 
 
 <h1 style="text-align: center;">{{error}}</h1 >

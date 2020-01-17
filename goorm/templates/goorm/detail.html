@@ -108,10 +108,10 @@
     <br>
     <div>
         <a class="p-2 text-muted" href="{% url 'goorm:goormlist' %}"> <strong>List</strong></a>
-
-        <a class="p-2 text-muted" href="{% url 'goorm:delete' tobacco.id %}"><strong>Delete</strong></a>
-
-        <a href="{% url 'goorm:edit' tobacco.id %}" class="p-2 text-muted"><strong>Edit</strong></a>
+        {% if request.user.username == 'admin'%}
+            <a class="p-2 text-muted" href="{% url 'goorm:delete' tobacco.id %}"><strong>Delete</strong></a>
+            <a href="{% url 'goorm:edit' tobacco.id %}" class="p-2 text-muted"><strong>Edit</strong></a>
+        {% endif %}
     </div>
     <br>
     <hr>

@@ -2,8 +2,9 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Goorm List</h1>
-
-    <a href = "{% url 'goorm:new' %}" class="p-2 text-muted">새 구름 등록하기</a>
+    {% if request.user.username == 'admin'%}
+      <a href = "{% url 'goorm:new' %}" class="p-2 text-muted">새 구름 등록하기</a>
+    {% endif %}
     
     <hr>
     <h3>Brand</h3>
